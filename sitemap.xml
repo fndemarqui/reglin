@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/reglin.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/articles/reglin.html</loc>
   </url>
   <url>
-    <loc>/articles/simdata.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/articles/simdata.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/index.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/rlm.html</loc>
+    <loc>https://github.com/fndemarqui/reglin/reference/rlm.html</loc>
   </url>
 </urlset>
