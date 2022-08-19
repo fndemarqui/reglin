@@ -4,8 +4,5 @@ pkgdown_sha: ~
 articles:
   reglin: reglin.html
   simdata: simdata.html
-last_built: 2022-08-19T18:24Z
-urls:
-  reference: https://github.com/fndemarqui/reglin/reference
-  article: https://github.com/fndemarqui/reglin/articles
+last_built: 2022-08-19T18:44Z
 
