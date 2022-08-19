@@ -19,7 +19,6 @@ knitr::opts_chunk$set(
 library(reglin)
 library(tidyverse)
 library(ggpubr)
-library(plotly)
 
 # fixando a semente:
 set.seed(1234567890)
@@ -29,14 +28,16 @@ sigma <- 2
 beta <- c(10, -2)
 data <-data.frame(x=rnorm(n))
 
-df <- rlm(~x, data = data, beta = beta, sigma = sigma)
-glimpse(df)
+simdata <- rlm(~x, data = data, beta = beta, sigma = sigma)
+glimpse(simdata)
 
-p <- ggplot(df, aes(x=x, y=y)) +
+fit <- lm(y~x, data = simdata)
+summary(fit)
+
+ggplot(simdata, aes(x=x, y=y)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  stat_regline_equation(label.y = 5, aes(label = ..eq.label..)) 
-ggplotly(p)
+  stat_regline_equation(label.x = -2, label.y = 5, aes(label = ..eq.label..)) 
 
 
 ```
