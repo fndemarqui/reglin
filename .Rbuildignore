@@ -1,0 +1,8 @@
+^reglin\.Rproj$
+^\.Rproj\.user$
+^inst/script_development\.R$
+^LICENSE\.md$
+^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
