@@ -15,8 +15,11 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message = FALSE}
+# anexando os pacotes necessários:
 library(reglin)
 library(tidyverse)
+library(ggpubr)
+library(plotly)
 
 # fixando a semente:
 set.seed(1234567890)
@@ -29,8 +32,11 @@ data <-data.frame(x=rnorm(n))
 df <- rlm(~x, data = data, beta = beta, sigma = sigma)
 glimpse(df)
 
-ggplot(df, aes(x=x, y=y)) +
-  geom_point()
+p <- ggplot(df, aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  stat_regline_equation(label.y = 5, aes(label = ..eq.label..)) 
+ggplotly(p)
 
 
 ```

@@ -1,4 +1,5 @@
-url: https://github.com/fndemarqui/reglin
+url: ~
 template:
   bootstrap: 5
-
+development:
+  mode: auto
