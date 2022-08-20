@@ -22,7 +22,7 @@ Funções para análise e base de dados dos exemplos e exercícios utilizados na
 
 ## Installation
 
-Você pode instalar a versão de desenvolvimento do pacote planex a partir do GitHub da seguinte forma:
+Você pode instalar a versão de desenvolvimento do pacote __reglin__ a partir do GitHub da seguinte forma:
 
 ```{r, eval=FALSE}
 if(!require(remotes)) install.packages("remotes")

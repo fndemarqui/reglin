@@ -14,6 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+Vamos utilizar a função `reglin::rlm()` para gerar uma amostra de $n=50$ observações considerando o seguinte modelo de regressão linear simples:
+
+\begin{equation}
+  y_{i} = 10 - 2x_{i} + \epsilon_{i}, 
+\end{equation}
+em que $\epsilon_{i} \overset{\text{i.i.d.}}{\sim} N(0, \sigma)$, $i=1, \cdots, n,$, com $\sigma = 2$.
+
 ```{r, message = FALSE}
 # anexando os pacotes necessários:
 library(reglin)
@@ -31,13 +38,24 @@ data <-data.frame(x=rnorm(n))
 simdata <- rlm(~x, data = data, beta = beta, sigma = sigma)
 glimpse(simdata)
 
-fit <- lm(y~x, data = simdata)
-summary(fit)
+```
 
+O diagrama de dispersão entre $x$ e $y$, fundamental para a verificação da existência de relação linear entre essas variáveis, pode ser obtido da seguinte forma:
+
+```{r}
+
+# plotando o diagrama de dispersão:
 ggplot(simdata, aes(x=x, y=y)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   stat_regline_equation(label.x = -2, label.y = 5, aes(label = ..eq.label..)) 
-
-
 ```
+
+Os coeficientes estimados são apresentados a seguir:
+
+```{r}
+
+fit <- lm(y~x, data = simdata)  # ajustando o modelo
+coef(fit)                       # extraíndo os coeficientes estimados
+```
+
