@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Funções para análise e base de dados dos exemplos e exercícios
+Funções para análise e conjuntos de dados dos exemplos e exercícios
 utilizados na disciplina de Análise de Regressão Linear (EST035).
 
 ## Installation
