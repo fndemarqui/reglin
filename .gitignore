@@ -1,4 +1,5 @@
 .Rproj.user
+/inst
 inst/script_development.R
 inst/doc
 /Meta/
