@@ -1,5 +1,4 @@
 
-
 #' Pureza do oxigênio
 #'
 #' @name pureza
@@ -15,6 +14,8 @@
 #' @references  Montgomery, D. C., Runger, G. C. (2015) Estatística Aplicada e Probabilidade para Engenheiros, 5ª. Edição, Rio de Janeiro: LTC.
 #'
 NULL
+
+
 
 #' Força de fibras de monofilamento
 #'
