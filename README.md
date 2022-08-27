@@ -11,5 +11,5 @@ partir do GitHub da seguinte forma:
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("fndemarqui/reglin") 
+remotes::install_github("fndemarqui/reglin")
 ```
