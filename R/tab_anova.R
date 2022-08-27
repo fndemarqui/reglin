@@ -14,8 +14,16 @@ tab_anova <- function(model){
   p <- ncol(X)
   r <- residuals(model)
   gl_res <- model$df.residual
-  gl_mod <- n-1 - gl_res
-  SQTotal <- sum((y-mean(y))^2)
+  if(names(coef(model))[1]=="(Intercept)"){
+    gl_total <- n-1
+    SQTotal <- sum((y-mean(y))^2)
+  }else{
+    gl_total <- n
+    SQTotal <- sum(y^2)
+  }
+  gl_mod <- gl_total - gl_res
+
+
   SQRes <- sum(r^2)
   SQMod <- SQTotal - SQRes
   QMRes <- SQRes/gl_res
@@ -23,7 +31,7 @@ tab_anova <- function(model){
   f0 <- QMMod/QMRes
   pvalue <- pf(f0, df1 = gl_mod, df2=gl_res, lower.tail = FALSE)
   tb <- cbind(
-    Df = as.integer(c(gl_mod, gl_res, n-1)),
+    Df = as.integer(c(gl_mod, gl_res, gl_total)),
     `Sum Sq` = c(SQMod, SQRes, SQTotal),
     `Mean Sq` = c(QMMod, QMRes, NA),
     `F value` = c(f0, NA, NA),
