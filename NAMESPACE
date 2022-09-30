@@ -2,5 +2,6 @@
 
 export(R2)
 export(R2adj)
+export(ggresiduals)
 export(rlm)
 export(tab_anova)
