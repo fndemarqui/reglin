@@ -1,11 +1,11 @@
 
 
-ggcrplot <- function(model){
-  mf <- stats::model.frame(model)
+ggcrplot <- function(object){
+  mf <- stats::object.frame(object)
   ylabel <- names(mf)[1]
   mf <- mf[, -1, drop = FALSE]
-  X <- stats::model.matrix(model)
-  coefs <- coef(model)
+  X <- stats::object.matrix(object)
+  coefs <- coef(object)
   if(colnames(X)[1] == "(Intercept)"){
     X <- X[,-1, drop = FALSE]
     coefs <- coefs[-1]
@@ -13,7 +13,7 @@ ggcrplot <- function(model){
 
   plots <- list()
   p <- ncol(X)
-  r <- residuals(model)
+  r <- residuals(object)
   labels <- names(coefs)
 
   for(j in 1:p){
@@ -37,10 +37,3 @@ ggcrplot <- function(model){
 
 }
 
-
-ggcrplot(fit)
-
-
-
-ggplot(model, aes(x=fitted.values, y = residuals)) +
-  geom_point()

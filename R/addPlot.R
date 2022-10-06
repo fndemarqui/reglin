@@ -1,10 +1,10 @@
-ggaddplot <- function(model){
-  mf <- stats::model.frame(model)
-  X <- stats::model.matrix(model)
+ggaddplot <- function(object){
+  mf <- stats::object.frame(object)
+  X <- stats::object.matrix(object)
   if(colnames(X)[1] == "(Intercept)"){
     X <- X[,-1, drop = FALSE]
   }
-  y <- stats::model.response(data = mf)
+  y <- stats::object.response(data = mf)
   ylabel <- names(mf)[1]
 
   p <- ncol(X)
