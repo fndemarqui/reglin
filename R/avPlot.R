@@ -1,10 +1,11 @@
-ggaddplot <- function(object){
-  mf <- stats::object.frame(object)
-  X <- stats::object.matrix(object)
+
+avPlots <- function(object){
+  mf <- stats::model.frame(object)
+  X <- stats::model.matrix(object)
   if(colnames(X)[1] == "(Intercept)"){
     X <- X[,-1, drop = FALSE]
   }
-  y <- stats::object.response(data = mf)
+  y <- stats::model.response(data = mf)
   ylabel <- names(mf)[1]
 
   p <- ncol(X)
@@ -18,7 +19,7 @@ ggaddplot <- function(object){
       x = residuals(fit1),
       y = residuals(fit2)
     )
-    plots[[j]] <- ggplot(r, aes(x = x, y = y)) +
+    plots[[j]] <- ggplot(r, aes(x = .data$x, y = .data$y)) +
       geom_point() +
       geom_smooth(method = lm, se = FALSE) +
       xlab(paste0(labels[j], " | others")) +

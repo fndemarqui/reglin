@@ -4,7 +4,9 @@
 #' @name reglin-package
 #' @aliases reglin
 #' @description Funções e bancos de dados para a disciplina de Análise de Regressão.
-#' @importFrom stats coef lm model.frame model.matrix model.response pf qf residuals rnorm vcov
+#' @importFrom dplyr mutate %>%
+#' @importFrom stats coef lm model.frame model.matrix model.response pf qf residuals rnorm rstandard vcov
+#' @importFrom tibble tibble
 #' @import ggplot2
 #' @references
 #'

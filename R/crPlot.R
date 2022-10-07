@@ -1,10 +1,10 @@
 
 
-ggcrplot <- function(object){
-  mf <- stats::object.frame(object)
+crPlots <- function(object){
+  mf <- stats::model.frame(object)
   ylabel <- names(mf)[1]
   mf <- mf[, -1, drop = FALSE]
-  X <- stats::object.matrix(object)
+  X <- stats::model.matrix(object)
   coefs <- coef(object)
   if(colnames(X)[1] == "(Intercept)"){
     X <- X[,-1, drop = FALSE]
@@ -19,9 +19,9 @@ ggcrplot <- function(object){
   for(j in 1:p){
     df <- tibble(
       x = mf[,j],
-      y = r + coefs[j]*x
+      y = r + coefs[j]*.data$x
     )
-    plots[[j]] <- ggplot(df, aes(x = x, y = y)) +
+    plots[[j]] <- ggplot(df, aes(x = .data$x, y = .data$y)) +
       geom_point() +
       geom_abline(slope = coefs[j], color = "red") +
       geom_smooth(se = FALSE) +
