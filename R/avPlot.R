@@ -13,8 +13,13 @@ avPlots <- function(object){
   plots <- list()
 
   for(j in 1:p){
-    fit1 <- lm(X[,j] ~ X[,-j])
-    fit2 <- lm(y ~ X[,-j])
+    if(p==1){
+      fit1 <- lm(X[,j] ~ 1)
+      fit2 <- lm(y ~ 1)
+    }else{
+      fit1 <- lm(X[,j] ~ X[,-j])
+      fit2 <- lm(y ~ X[,-j])
+    }
     r <- data.frame(
       x = residuals(fit1),
       y = residuals(fit2)
