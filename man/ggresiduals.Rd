@@ -37,3 +37,6 @@ ggresiduals(
 \description{
 ggplot version of plot diagnostics for an lm object
 }
+\author{
+Fábio N. Demarqui
+}

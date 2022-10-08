@@ -43,9 +43,21 @@
     <loc>/reference/pureza.html</loc>
   </url>
   <url>
+    <loc>/reference/reglin-package.html</loc>
+  </url>
+  <url>
     <loc>/reference/rlm.html</loc>
   </url>
   <url>
+    <loc>/reference/se.html</loc>
+  </url>
+  <url>
+    <loc>/reference/se.lm.html</loc>
+  </url>
+  <url>
     <loc>/reference/tab_anova.html</loc>
+  </url>
+  <url>
+    <loc>/reference/testResiduals.html</loc>
   </url>
 </urlset>

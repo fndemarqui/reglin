@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">reglin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggresiduals</span><span class="op">(</span><span class="va">object</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggresiduals</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"crPlots"</span>, <span class="st">"avPlots"</span>, <span class="st">"covPlots"</span><span class="op">)</span>,</span>
+<span>  which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -66,16 +71,32 @@
 <dd><p>an object of class lm with the fitted linear model.</p></dd>
 
 
+<dt>type</dt>
+<dd><p>the desired type of plot; available options are:</p><ul><li><p>default: for default R residual plots</p></li>
+<li><p>crPlots: for component + residuals plots</p></li>
+<li><p>avPlots: for added variable plots</p></li>
+<li><p>covPlots: for covariates vs stdresidual plots</p></li>
+</ul></dd>
+
+
 <dt>which</dt>
-<dd><p>a subset of the numbers 1:6, by default 1:4, referring to:</p><ol><li><p>"Residuals vs Fitted"</p></li>
-<li><p>"Normal Q-Q" plot</p></li>
-<li><p>"Scale-Location"</p></li>
-<li><p>"Cook's distance"</p></li>
-<li><p>"Residuals vs Leverage"</p></li>
-<li><p>"Cook's dist vs Lev./(1-Lev.)"</p></li>
+<dd><p>only used for the default type of plot; a subset of the numbers 1:6, by default 1:4, referring to:</p><ol><li><p>Residuals vs Fitted</p></li>
+<li><p>Normal Q-Q" plot</p></li>
+<li><p>Scale-Location</p></li>
+<li><p>Cook's distance</p></li>
+<li><p>Residuals vs Leverage</p></li>
+<li><p>Cook's dist vs Lev./(1-Lev.)</p></li>
 </ol></dd>
 
+
+<dt>...</dt>
+<dd><p>further arguments passed to other methods.</p></dd>
+
 </dl></div>
+    <div class="section level2">
+    <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
+    <p>Fábio N. Demarqui</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

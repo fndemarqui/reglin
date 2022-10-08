@@ -20,6 +20,7 @@
 #'   \item Cook's dist vs Lev./(1-Lev.)
 #' }
 #' @param ... further arguments passed to other methods.
+#' @author Fábio N. Demarqui
 
 ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPlots"), which = 1:4, ...){
   type <- match.arg(type)
@@ -128,7 +129,7 @@ covPlots <- function(object){
       xlab(labels[j+1])
   }
   if(p==1){
-    plots
+    gridExtra::grid.arrange(grobs = plots)
   }else{
     gridExtra::grid.arrange(grobs = plots, ncol = 2)
   }
