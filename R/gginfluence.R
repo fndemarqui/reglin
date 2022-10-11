@@ -6,6 +6,8 @@ plot_leverage <- function(object){
   leverage <- data.frame(
     leverage = stats::hatvalues(object)
   )
+  n <- length(object$residuals)
+  p <- length(coef(object))
   upr <- 2*p/n
 
   ggplot(leverage, aes(x = seq_along(.data$leverage), y = .data$leverage)) +
@@ -100,11 +102,11 @@ plot_dfbetas <- function(object){
     )
 
 
-  ggplot(dfbetas, aes(x = seq_along(.data$value), y = .data$value)) +
+  ggplot(dfbetas, aes(x = obs, y = .data$value)) +
     geom_abline(intercept = 0, slope = 0, color = "blue") +
     geom_abline(intercept = c(-1, 1), slope = 0, color = "blue", linetype="dashed") +
     geom_point() +
-    geom_segment(aes(x = seq_along(.data$value), y = 0, xend = seq_along(.data$value), yend = .data$value)) +
+    geom_segment(aes(x = obs, y = 0, xend = obs, yend = .data$value)) +
     ggtitle("DFbetaS") +
     labs(x="observations", y="dfbetas") +
     ylim(range(-1, 1, dfbetas$value)) +
