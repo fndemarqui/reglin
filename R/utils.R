@@ -23,3 +23,8 @@ se <- function(object, ...) UseMethod("se")
 se.lm <- function(object, ...){
   sqrt(diag(vcov(object)))
 }
+
+
+press <- function(object){
+  return(sum(rstandard(object, type="pred")^2))
+}

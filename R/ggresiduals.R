@@ -39,6 +39,9 @@ defaultPlots <- function(object, which = 1:4){
   df2 <- object$df.residual
   f <- qf(0.5, df1, df2)
 
+  p <- df1
+  n <- length(object$residuals)
+
   p1 <- ggplot(df, aes(.data$.fitted, .data$.stdresid)) +
     geom_point() +
     geom_hline(yintercept = 0) +
@@ -63,10 +66,9 @@ defaultPlots <- function(object, which = 1:4){
     ggtitle("scale-location")
 
   p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
-    #geom_point(aes(size = .cooksd)) +
-    # geom_vline(size = 2, colour = "white", xintercept = 0) +
-    # geom_hline(size = 2, colour = "white", yintercept = 0) +
     geom_point() +
+    geom_abline(intercept = c(-2, 2), slope = 0, color = "blue", linetype="dashed") +
+    geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, size = 0.5) +
     ggtitle("residuals vs leverage")
 
