@@ -70,7 +70,8 @@ defaultPlots <- function(object, which = 1:4){
     geom_abline(intercept = c(-2, 2), slope = 0, color = "blue", linetype="dashed") +
     geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, size = 0.5) +
-    ggtitle("residuals vs leverage")
+    ggtitle("residuals vs leverage") +
+    ylim(min(df$.stdresid, -3), max(df$.stdresid, 3))
 
   tb <- df %>%
     mutate(

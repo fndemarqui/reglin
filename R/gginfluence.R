@@ -8,7 +8,7 @@ plot_leverage <- function(object){
   )
   n <- length(object$residuals)
   p <- length(coef(object))
-  upr <- 2*p/n
+  upr <- 3*p/n
 
   ggplot(leverage, aes(x = seq_along(.data$leverage), y = .data$leverage)) +
     geom_point() +
