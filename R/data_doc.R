@@ -16,6 +16,22 @@
 NULL
 
 
+#' Geração de energia
+#'
+#' @name moinho
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo: Um engenheiro de pesquisa está investigando o uso de um moinho de vento para gerar eletricidade. Ele coletou dados sobre a tensão de saída de seu moinho de vento e a velocidade do vento correspondente.
+#' @format Data frame com 25 linhas e duas variáveis:
+#' \itemize{
+#'   \item velocidade: velocidade do vento (covariável)
+#'   \item tensao: tensão de saída (variável resposta)
+#' }
+#' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL
+
 
 #' Força de fibras de monofilamento
 #'
