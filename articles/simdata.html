@@ -80,10 +80,13 @@
 
     
     
-<p>Vamos utilizar a função <code><a href="../reference/rlm.html">reglin::rlm()</a></code> para gerar uma amostra de <span class="math inline">\(n=50\)</span> observações considerando o seguinte modelo de regressão linear simples:</p>
+<p>Vamos utilizar a função <code><a href="../reference/rlm.html">reglin::rlm()</a></code> para gerar uma
+amostra de <span class="math inline">\(n=50\)</span> observações
+considerando o seguinte modelo de regressão linear simples:</p>
 <p><span class="math display">\[\begin{equation}
-  y_{i} = 10 - 2x_{i} + \epsilon_{i}, 
-\end{equation}\]</span> em que <span class="math inline">\(\epsilon_{i} \overset{\text{i.i.d.}}{\sim} N(0, \sigma)\)</span>, <span class="math inline">\(i=1, \cdots, n,\)</span>, com <span class="math inline">\(\sigma = 2\)</span>.</p>
+  y_{i} = 10 - 2x_{i} + \epsilon_{i},
+\end{equation}\]</span> em que <span class="math inline">\(\epsilon_{i}
+\overset{\text{i.i.d.}}{\sim} N(0, \sigma)\)</span>, <span class="math inline">\(i=1, \cdots, n,\)</span>, com <span class="math inline">\(\sigma = 2\)</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># anexando os pacotes necessários:</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fndemarqui.github.io/reglin/" class="external-link">reglin</a></span><span class="op">)</span></span>
@@ -104,7 +107,10 @@
 <span><span class="co">#&gt; Columns: 2</span></span>
 <span><span class="co">#&gt; $ x <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.34592454, 0.99527131, 0.54622688, -1.91272392, 1.92128431, 1.37191…</span></span>
 <span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8.542454, 8.630938, 7.789636, 11.463493, 4.508771, 6.334617, 11.9887…</span></span></code></pre></div>
-<p>O diagrama de dispersão entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>, fundamental para a verificação da existência de relação linear entre essas variáveis, pode ser obtido da seguinte forma:</p>
+<p>O diagrama de dispersão entre <span class="math inline">\(x\)</span>
+e <span class="math inline">\(y\)</span>, fundamental para a verificação
+da existência de relação linear entre essas variáveis, pode ser obtido
+da seguinte forma:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># plotando o diagrama de dispersão:</span></span>
