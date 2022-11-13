@@ -51,3 +51,60 @@ NULL
 NULL
 
 
+#' Longevidade de moscas-das-frutas
+#'
+#' @name moscas
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Em um experimento 125 moscas-das-frutas que foram divididas aleatoriamente em 5 grupos de 25 cada. A resposta foi a longevidade da mosca-da-fruta em dias. Um grupo foi mantido solitário (A), enquanto outro foi mantido individualmente com uma fêmea virgem a cada dia (B). Outro grupo recebeu 8 fêmeas virgens por dia (C). Como controle adicional, o quarto (D) e quinto (E) grupos foram mantidos com uma ou oito fêmeas grávidas por dia. As moscas-das-frutas grávidas não acasalam. O comprimento do tórax de cada macho foi medido, pois isso era conhecido por afetar a longevidade. Uma observação no grupo D foi perdida.
+#' @format Data frame com 124 linhas e 3 variáveis:
+#' \itemize{
+#'   \item torax: comprimento do tórax de cada macho (covariável)
+#'   \item longevidade:  longevidade da mosca-da-fruta em dias (variável resposta)
+#'   \item grupo:  grupos de interesse para comparação (covariável)
+#' }
+#' @references
+#'
+#' \insertRef{faraway}{reglin}
+#'
+NULL
+
+
+#' Isolamento térmico de casa e consumo de gás
+#'
+#' @name gas
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Derek Whiteside, da Estação de Pesquisa de Edifícios do Reino Unido, registrou o consumo semanal de gás e a temperatura externa média em sua própria casa no sudeste da Inglaterra para duas estações de aquecimento, uma de 26 semanas antes e uma de 30 semanas após a instalação do isolamento térmico nas paredes da sua residência. O objetivo do exercício foi avaliar o efeito do isolamento térmico no consumo de gás.
+#' @format Data frame com 56 linhas e 3 variáveis:
+#' \itemize{
+#'   \item isolamento: variável indicadora (antes/depois) da instalação do isolamento  (covariável)
+#'   \item temperatura:  temperatura externa medida em graus Celsius (covariável)
+#'   \item consumo: consumo semanal de gás em metros cúbicos  (variável resposta)
+#' }
+#' @references
+#'
+#' \insertRef{MASS}{reglin}
+#'
+NULL
+
+
+#' Tamanho de ouriços
+#'
+#' @name ouricos
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Um experimento foi realizado com o objetivo de determinar como três regimes de alimentação diferentes (A, B e C) afetam o tamanho de ouriços-do-mar ao longo do tempo. O tamanho inicial dos ouriços-do-mar no início do experimento provavelmente afeta o tamanho que eles crescem à medida que são alimentados, e portanto foi considerado uma variável de perturbação.
+#' @format Data frame com 72 linhas e 3 variáveis:
+#' \itemize{
+#'   \item regime: regime de alimentação: A, B ou C (covariável)
+#'   \item tamanho_inicial: tamanho do ouriço antes do início da dieta (covariável)
+#'   \item tamanho_final: tamanho do ouriço no final do experimento (variável resposta)
+#' }
+#' @source \href{https://www.tidymodels.org/start/models/}{tidymodels}
+#'
+NULL
+
