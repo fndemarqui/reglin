@@ -108,3 +108,21 @@ NULL
 #'
 NULL
 
+
+
+#' Efeito de propaganda sobre as receitas de restaurantes
+#'
+#' @name restaurantes
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo: Um estudo foi realizado para avaliar o impacto do gasto anual com propagana sobre o rendimento médio mensal da venda de alimentos de 30 restaurantes.
+#' @format Data frame com 3 linhas e 3 variáveis:
+#' \itemize{
+#'   \item receita: receita média mensal do restaurante (variável resposta)
+#'   \item propaganda: gasto anual com propaganda (covariável)
+#'   \item id: indicadora de grupo de restaurantes
+#' }
+#' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL
