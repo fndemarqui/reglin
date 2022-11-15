@@ -11,7 +11,7 @@ testResiduals <- function(object, ...){
 
   cat("\n")
   cat("Shapiro-Wilk normality test", "\n")
-  sw <- stats::shapiro.test(residuals(fit))
+  sw <- stats::shapiro.test(residuals(object))
   df <- data.frame(
     W = as.numeric(sw$statistic),
     "p-value" = sw$p.value
@@ -22,12 +22,12 @@ testResiduals <- function(object, ...){
   cat("\n")
 
   # teste de homocedasticidade da variância:
-  print(car::ncvTest(fit))
+  print(car::ncvTest(object))
   cat("------", "\n")
   cat("\n")
 
   cat("Durbin-Watson Test for Autocorrelated Errors", "\n")
-  print(car::durbinWatsonTest(fit))
+  print(car::durbinWatsonTest(object))
   cat("------", "\n")
   cat("\n")
 
