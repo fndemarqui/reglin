@@ -1,8 +1,8 @@
-pandoc: '2.18'
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   reglin: reglin.html
   simdata: simdata.html
-last_built: 2022-11-15T16:50Z
+last_built: 2022-11-22T10:42Z
 
