@@ -143,3 +143,22 @@ NULL
 #' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
 #'
 NULL
+
+
+#' Geração de energia
+#'
+#' @name acetileno
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo: Dados referentes à porcentagem de conversão de n-heptano para acetileno e três variáveis explicativas. Estes são dados típicos de processos químicos para os quais uma superfície de resposta quadrática completa envolvendo todas as três variáveis regressoras é frequentemente considerada como um modelo inicial de investigação.
+#' @format Data frame com 16 linhas e 4 variáveis:
+#' \itemize{
+#'   \item conversao: conversão de n-heptano para acetileno (%)
+#'   \item temperatura: temperatura de reação (em °C)
+#'   \item razao: razão de H2 para n-heptano (razão molar)
+#'   \item tempo: tempo de contato (em segundos)
+#' }
+#' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL

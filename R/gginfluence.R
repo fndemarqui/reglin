@@ -70,7 +70,7 @@ plot_dffits <- function(object){
   upr <- + 3*sqrt(p/(n-p))
 
   dffits <- data.frame(
-    dffits = stats::dffits(fit)
+    dffits = stats::dffits(object)
   )
 
   ggplot(dffits, aes(x = seq_along(.data$dffits), y = .data$dffits)) +

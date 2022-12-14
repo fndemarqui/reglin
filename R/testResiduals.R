@@ -32,7 +32,7 @@ testResiduals <- function(object, ...){
   cat("\n")
 
   cat("Bonferroni Outlier Test", "\n")
-  print(car::outlierTest(fit))
+  print(car::outlierTest(object))
   cat("\n")
 
 }

@@ -36,3 +36,23 @@ hat_matrix <- function(object){
   H <- X%*%solve(XtX)%*%t(X)
   return(H)
 }
+
+
+
+#---------------------------------------------
+#' Scaling of variables
+#'
+#' @aliases pad
+#' @export
+#' @param x a vector containing the values to be scaled (normal and unity scales are available)
+#' @param type type of scaling to be applied.
+#' @return  a vector with the scaled variable
+#'
+pad <- function(x, type = c("normal", "unit")){
+  type <- match.arg(type)
+  u <- (x-mean(x))
+  switch(type,
+         "normal" = u/sd(x),
+         "unit" = u/sqrt(sum(u^2)),
+  )
+}
