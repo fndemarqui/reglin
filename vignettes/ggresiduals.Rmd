@@ -1,0 +1,52 @@
+---
+title: "Análise de resíduos"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Análise de resíduos}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(reglin)
+
+set.seed(1234567890)
+
+n <- 100
+cov <- data.frame(
+  x1 = rnorm(n),
+  x2 = rnorm(n),
+  x3 = exp(rnorm(n))
+)
+simdata <- rlm(~ x1 + x2 + log(x3), data = cov, beta = c(2.3, 0, 1.7, 1), sigma = 1)
+glimpse(simdata)
+
+# escala incorreda de x3:
+fit <- lm(y ~ x1 + x2 + x3, data = simdata)
+
+ggresiduals(fit, type = "default")
+ggresiduals(fit, type = "crPlots")
+ggresiduals(fit, type = "avPlots")
+ggresiduals(fit, type = "covPlots")
+
+
+# testes:
+testResiduals(fit)
+
+# análise (gráfica) de influência:
+gginfluence(fit, measure = "leverage")
+gginfluence(fit, measure = "dfbetas")
+gginfluence(fit, measure = "cooksd")
+gginfluence(fit, measure = "dffits")
+gginfluence(fit, measure = "covratio")
+
+```
