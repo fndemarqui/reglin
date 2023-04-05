@@ -2,7 +2,8 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
+  ggresiduals: ggresiduals.html
   reglin: reglin.html
   simdata: simdata.html
-last_built: 2022-12-21T14:15Z
+last_built: 2023-04-05T16:53Z
 
