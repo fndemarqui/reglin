@@ -26,7 +26,7 @@ glimpse(pureza)
 ggplot(pureza, aes(x=percentual, y=pureza)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  stat_regline_equation(label.x = 1.4, label.y = 90, aes(label = ..eq.label..)) 
+  stat_regline_equation(label.x = 1.4, label.y = 90, aes(label = after_stat(eq.label))) 
 
 fit <- lm(pureza ~ percentual, data = pureza)
 summary(fit)

@@ -9,3 +9,5 @@
 ^doc$
 ^Meta$
 ^\.github$
+^\.Rhistory$
+^R/\.Rhistory$

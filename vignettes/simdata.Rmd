@@ -48,7 +48,7 @@ O diagrama de dispersão entre $x$ e $y$, fundamental para a verificação da ex
 ggplot(simdata, aes(x=x, y=y)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  stat_regline_equation(label.x = -2, label.y = 5, aes(label = ..eq.label..)) 
+  stat_regline_equation(label.x = -2, label.y = 5, aes(label = after_stat(eq.label))) 
 ```
 
 Os coeficientes estimados são apresentados a seguir:
