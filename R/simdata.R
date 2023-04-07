@@ -9,6 +9,7 @@
 #' @return a data.frame containing the generated data
 #'
 rlm <- function(formula, data, beta, sigma){
+  if((length(sigma) != 1) & (length(sigma) != nrow(data))) stop("sigma must be numeric or of size n!")
   mf <- stats::model.frame(formula=formula, data=data)
   X <- stats::model.matrix(formula, data = mf)
   n <- nrow(X)
