@@ -1,6 +1,7 @@
 ---
 title: "Introdução ao pacote reglin"
 output: rmarkdown::html_vignette
+author: Fábio N. Demarqui
 vignette: >
   %\VignetteIndexEntry{Introdução ao pacote reglin}
   %\VignetteEngine{knitr::rmarkdown}

@@ -1,6 +1,7 @@
 ---
 title: "Análise de resíduos"
 output: rmarkdown::html_vignette
+author: Fábio N. Demarqui
 vignette: >
   %\VignetteIndexEntry{Análise de resíduos}
   %\VignetteEngine{knitr::rmarkdown}
