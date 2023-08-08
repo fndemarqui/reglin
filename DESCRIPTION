@@ -3,7 +3,7 @@ Title: Regressão Linear
 Version: 0.0.4
 Authors@R: person(given = "Fabio", family = "Demarqui", email = "fndemarqui@est.ufmg.br", role = c("aut", "cre"))
 Description: Funções para análise e conjuntos de dados dos exemplos e exercícios utilizados na disciplina de Análise de Regressão Linear (EST035).
-License: AGPL (>= 3)
+License: MIT + file LICENSE
 URL: https://fndemarqui.github.io/reglin/, https://github.com/fndemarqui/reglin
 LazyData: true
 Biarch: true
