@@ -102,9 +102,13 @@ considerando o seguinte modelo de regressão linear simples:</p>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
 <span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">simdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">simdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rlm.html">rlm</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, data <span class="op">=</span> <span class="va">data</span>, beta <span class="op">=</span> <span class="va">beta</span>, sigma <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span></span>
+<span><span class="va">simdata</span> <span class="op">&lt;-</span> <span class="va">simdata</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="../reference/rlm.html">rlm</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, beta <span class="op">=</span> <span class="va">beta</span>, sigma <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>  </span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 50</span></span>
 <span><span class="co">#&gt; Columns: 2</span></span>
