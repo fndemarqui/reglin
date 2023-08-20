@@ -34,9 +34,13 @@ set.seed(1234567890)
 n <- 50
 sigma <- 2
 beta <- c(10, -2)
-data <-data.frame(x=rnorm(n))
+simdata <- data.frame(x=rnorm(n))
 
-simdata <- rlm(~x, data = data, beta = beta, sigma = sigma)
+simdata <- simdata |>
+  mutate(
+    y = rlm(~x, beta = beta, sigma = sigma)  
+  )
+  
 glimpse(simdata)
 
 ```

@@ -23,12 +23,15 @@ library(reglin)
 set.seed(1234567890)
 
 n <- 100
-cov <- data.frame(
+simdata <- data.frame(
   x1 = rnorm(n),
   x2 = rnorm(n),
   x3 = exp(rnorm(n))
-)
-simdata <- rlm(~ x1 + x2 + log(x3), data = cov, beta = c(2.3, 0, 1.7, 1), sigma = 1)
+) |>
+  mutate(
+    y = simdata <- rlm(~ x1 + x2 + log(x3), beta = c(2.3, 0, 1.7, 1), sigma = 1)
+  )
+
 glimpse(simdata)
 
 # escala incorreda de x3:

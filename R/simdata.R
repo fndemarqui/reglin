@@ -3,20 +3,25 @@
 #' @export
 #' @aliases rlm
 #' @param formula a formula containing the linear predictor.
-#' @param data a data.frame containing the set of covariates entering the linear predictor
 #' @param beta vector of regression coefficients
 #' @param sigma error standard deviation
-#' @return a data.frame containing the generated data
+#' @param data a data.frame containing the set of covariates entering the linear predictor
+#' @return a numeric vector containing the generated response variable.
 #'
-rlm <- function(formula, data, beta, sigma){
-  if((length(sigma) != 1) & (length(sigma) != nrow(data))) stop("sigma must be numeric or of size n!")
-  mf <- stats::model.frame(formula=formula, data=data)
+rlm <- function(formula, beta, sigma, data=NULL){
+  if(is.null(data)){
+    mf <- stats::model.frame(formula=formula, data = data)
+  }else{
+    mf <- stats::model.frame(formula=formula)
+  }
+
+  if((length(sigma) != 1) & (length(sigma) != nrow(mf))) stop("sigma must be numeric or of size n!")
   X <- stats::model.matrix(formula, data = mf)
   n <- nrow(X)
   p <- ncol(X)
   if(length(beta) !=p ){
     warning("X and beta are incompatible")
   }
-  data$y = as.numeric(X%*%beta) + rnorm(n, 0, sigma)
-  return(data)
+  y = as.numeric(X%*%beta) + rnorm(n, 0, sigma)
+  return(y)
 }

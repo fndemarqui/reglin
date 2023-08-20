@@ -11,3 +11,4 @@
 ^\.github$
 ^\.Rhistory$
 ^R/\.Rhistory$
+^inst/stuff$

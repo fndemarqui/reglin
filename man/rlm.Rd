@@ -4,19 +4,19 @@
 \alias{rlm}
 \title{rlm: generation of data with a linear regression structure}
 \usage{
-rlm(formula, data, beta, sigma)
+rlm(formula, beta, sigma, data = NULL)
 }
 \arguments{
 \item{formula}{a formula containing the linear predictor.}
 
-\item{data}{a data.frame containing the set of covariates entering the linear predictor}
-
 \item{beta}{vector of regression coefficients}
 
 \item{sigma}{error standard deviation}
+
+\item{data}{a data.frame containing the set of covariates entering the linear predictor}
 }
 \value{
-a data.frame containing the generated data
+a numeric vector containing the generated response variable.
 }
 \description{
 rlm: generation of data with a linear regression structure
