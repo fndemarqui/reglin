@@ -33,7 +33,7 @@ ggresiduals(
 \item Cook's dist vs Lev./(1-Lev.)
 }}
 
-\item{alpha}{significance level used to determined inconsistent points in plot 5.}
+\item{alpha}{significance level used to determined inconsistent points in plot 5; default value is alpha = 0.05.}
 
 \item{...}{further arguments passed to other methods.}
 }

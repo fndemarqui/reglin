@@ -19,7 +19,7 @@
 #'   \item Residuals vs Leverage
 #'   \item Cook's dist vs Lev./(1-Lev.)
 #' }
-#' @param alpha significance level used to determined inconsistent points in plot 5.
+#' @param alpha significance level used to determined inconsistent points in plot 5; default value is alpha = 0.05.
 #' @param ... further arguments passed to other methods.
 #' @author Fábio N. Demarqui
 
@@ -27,14 +27,14 @@ ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPl
   type <- match.arg(type)
   switch(
     type,
-    "default" = defaultPlots(object, which, ...),
+    "default" = defaultPlots(object, which, alpha, ...),
     "avPlots" = avPlots(object, ...),
     "crPlots" = crPlots(object, ...),
     "covPlots" = covPlots(object, ...)
   )
 }
 
-defaultPlots <- function(object, which = 1:4){
+defaultPlots <- function(object, which = 1:4, alpha = alpha){
   df <- fortify(object)
   df1 <- length(coef(object))
   df2 <- object$df.residual
@@ -67,7 +67,7 @@ defaultPlots <- function(object, which = 1:4){
     ggtitle("scale-location")
 
 
-  bound <- qt(0.05/(2*n), df = df2-1, lower.tail=FALSE)
+  bound <- qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
 
   p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
     geom_point() +
@@ -75,7 +75,7 @@ defaultPlots <- function(object, which = 1:4){
     geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, size = 0.5) +
     ggtitle("residuals vs leverage") +
-    ylim(min(df$.stdresid, -3), max(df$.stdresid, 3))
+    ylim(min(df$.stdresid, -1.05*bound), max(df$.stdresid, 1.05*bound))
 
   tb <- df %>%
     mutate(
