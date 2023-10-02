@@ -67,15 +67,16 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha){
     ggtitle("scale-location")
 
 
-  bound <- qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
+  cutoff <- qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
+  bound <- 1.01*max(cutoff, abs(df$.stdresid))
 
   p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
     geom_point() +
-    geom_abline(intercept = c(-bound, bound), slope = 0, color = "blue", linetype="dashed") +
+    geom_abline(intercept = c(-cutoff, cutoff), slope = 0, color = "blue", linetype="dashed") +
     geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, size = 0.5) +
     ggtitle("residuals vs leverage") +
-    ylim(min(df$.stdresid, -1.05*bound), max(df$.stdresid, 1.05*bound))
+    ylim(min(df$.stdresid, -bound), max(df$.stdresid, bound))
 
   tb <- df %>%
     mutate(
