@@ -8,6 +8,7 @@ ggresiduals(
   object,
   type = c("default", "crPlots", "avPlots", "covPlots"),
   which = 1:4,
+  alpha = 0.05,
   ...
 )
 }
@@ -31,6 +32,8 @@ ggresiduals(
 \item Residuals vs Leverage
 \item Cook's dist vs Lev./(1-Lev.)
 }}
+
+\item{alpha}{significance level used to determined inconsistent points in plot 5.}
 
 \item{...}{further arguments passed to other methods.}
 }

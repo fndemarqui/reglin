@@ -19,10 +19,11 @@
 #'   \item Residuals vs Leverage
 #'   \item Cook's dist vs Lev./(1-Lev.)
 #' }
+#' @param alpha significance level used to determined inconsistent points in plot 5.
 #' @param ... further arguments passed to other methods.
 #' @author Fábio N. Demarqui
 
-ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPlots"), which = 1:4, ...){
+ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPlots"), which = 1:4, alpha = 0.05, ...){
   type <- match.arg(type)
   switch(
     type,
@@ -65,9 +66,12 @@ defaultPlots <- function(object, which = 1:4){
     geom_smooth(se = FALSE)  +
     ggtitle("scale-location")
 
+
+  bound <- qt(alpha/(2*n), df2-1, lower.tail=FALSE)
+
   p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
     geom_point() +
-    geom_abline(intercept = c(-2, 2), slope = 0, color = "blue", linetype="dashed") +
+    geom_abline(intercept = c(-bound, bound), slope = 0, color = "blue", linetype="dashed") +
     geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, size = 0.5) +
     ggtitle("residuals vs leverage") +
