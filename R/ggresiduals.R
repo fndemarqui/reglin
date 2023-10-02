@@ -67,7 +67,7 @@ defaultPlots <- function(object, which = 1:4){
     ggtitle("scale-location")
 
 
-  bound <- qt(alpha/(2*n), df2-1, lower.tail=FALSE)
+  bound <- qt(0.05/(2*n), df = df2-1, lower.tail=FALSE)
 
   p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
     geom_point() +
