@@ -40,19 +40,20 @@ hat_matrix <- function(object){
 
 
 #---------------------------------------------
-#' Scaling of variables
+#' Variable standardization
 #'
-#' @aliases pad
+#' @aliases standardization
 #' @export
-#' @param x a vector containing the values to be scaled (normal and unity scales are available)
+#' @description Implementation of the unit normal and unit length scaling methods to produce standardized regression coefficients.
+#' @param x a vector containing the values to be scaled (unit normal scaling and unit length scales)
 #' @param type type of scaling to be applied.
-#' @return  a vector with the scaled variable
+#' @return a vector with the standardized variable
 #'
-pad <- function(x, type = c("normal", "unit")){
+standardization <- function(x, type = c("normal", "length")){
   type <- match.arg(type)
   u <- (x-mean(x))
   switch(type,
          "normal" = u/sd(x),
-         "unit" = u/sqrt(sum(u^2)),
+         "length" = u/sqrt(sum(u^2)),
   )
 }
