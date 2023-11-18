@@ -3,7 +3,7 @@
 \docType{data}
 \name{acetileno}
 \alias{acetileno}
-\title{Geração de energia}
+\title{Percentual de conversão de n-heptano para acetileno}
 \format{
 Data frame com 16 linhas e 4 variáveis:
 \itemize{
@@ -14,7 +14,7 @@ Data frame com 16 linhas e 4 variáveis:
 }
 }
 \description{
-Exemplo: Dados referentes à porcentagem de conversão de n-heptano para acetileno e três variáveis explicativas. Estes são dados típicos de processos químicos para os quais uma superfície de resposta quadrática completa envolvendo todas as três variáveis regressoras é frequentemente considerada como um modelo inicial de investigação.
+Exemplo: Dados referentes ao percentual de conversão de n-heptano para acetileno e três variáveis explicativas. Estes são dados típicos de processos químicos para os quais uma superfície de resposta quadrática completa envolvendo todas as três variáveis regressoras é frequentemente considerada como um modelo inicial de investigação.
 }
 \references{
 Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.

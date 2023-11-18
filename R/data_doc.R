@@ -145,13 +145,13 @@ NULL
 NULL
 
 
-#' Geração de energia
+#' Percentual de conversão de n-heptano para acetileno
 #'
 #' @name acetileno
 #' @docType data
 #' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
 #' @keywords datasets
-#' @description Exemplo: Dados referentes à porcentagem de conversão de n-heptano para acetileno e três variáveis explicativas. Estes são dados típicos de processos químicos para os quais uma superfície de resposta quadrática completa envolvendo todas as três variáveis regressoras é frequentemente considerada como um modelo inicial de investigação.
+#' @description Exemplo: Dados referentes ao percentual de conversão de n-heptano para acetileno e três variáveis explicativas. Estes são dados típicos de processos químicos para os quais uma superfície de resposta quadrática completa envolvendo todas as três variáveis regressoras é frequentemente considerada como um modelo inicial de investigação.
 #' @format Data frame com 16 linhas e 4 variáveis:
 #' \itemize{
 #'   \item conversao: conversão de n-heptano para acetileno (%)
