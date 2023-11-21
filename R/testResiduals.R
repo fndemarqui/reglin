@@ -27,6 +27,7 @@ testResiduals <- function(object, ...){
   cat("\n")
 
   cat("Durbin-Watson Test for Autocorrelated Errors", "\n")
+  set.seed(1234567890)
   print(car::durbinWatsonTest(object))
   cat("------", "\n")
   cat("\n")

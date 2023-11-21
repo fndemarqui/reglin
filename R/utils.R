@@ -25,10 +25,6 @@ se.lm <- function(object, ...){
 }
 
 
-press <- function(object){
-  return(sum(rstandard(object, type="pred")^2))
-}
-
 
 hat_matrix <- function(object){
   X <- model.matrix(object)
