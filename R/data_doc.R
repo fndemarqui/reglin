@@ -162,3 +162,37 @@ NULL
 #' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
 #'
 NULL
+
+
+#' Queda de tensão da bateria em um motor de míssil guiado
+#'
+#' @name tensao
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo: Dados referentes à queda de tensão da bateria em um motor de míssil guiado observada durante o voo do míssil. O diagrama de dispersão sugere que a queda de tensão se comporta de maneira diferente em diferentes segmentos de tempo e, portanto, modelaremos os dados com um spline cúbico usando dois nós em t1 = 6,5 e t2 = 13 segundos após o lançamento, respectivamente.
+#' @format Data frame com 41 linhas e duas variáveis:
+#' \itemize{
+#'   \item tempo: tempo após o lançamento (em segundos)
+#'   \item tensao: queda de tensão (Volt)
+#' }
+#' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL
+
+
+#' Resistência de papel
+#'
+#' @name resistencia
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo: Dados relativos à resistência do papel kraft e ao percentual de madeira nobre no lote de celulose a partir do qual o papel foi produzido. O diagrama de dispersão desses dados, aliado ao conhecimento do processo de produção, sugere que um modelo quadrático pode descrever adequadamente a relação entre resistência à tração e concentração de madeira nobre.
+#' @format Data frame com 19 linhas e duas variáveis:
+#' \itemize{
+#'   \item concentracao: percentual de madeira nobre no lote de celulose
+#'   \item resistencia: resistencia do papel
+#' }
+#' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL
