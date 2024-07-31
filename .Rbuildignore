@@ -12,3 +12,4 @@
 ^\.Rhistory$
 ^R/\.Rhistory$
 ^inst/stuff$
+^data-raw$
