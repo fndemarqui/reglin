@@ -8,8 +8,8 @@
 <title>Simulação de dados com estrutura de regressão linear • reglin</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Simulação de dados com estrutura de regressão linear">
 </head>
 <body>
@@ -126,6 +126,106 @@ essas variáveis, pode ser obtido da seguinte forma:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>                       <span class="co"># extraíndo os coeficientes estimados</span></span>
 <span><span class="co">#&gt; (Intercept)           x </span></span>
 <span><span class="co">#&gt;   10.560012   -2.034083</span></span></code></pre></div>
+<p>Agora vamos utilizar a função <code><a href="../reference/rlm.html">reglin::rlm()</a></code> para gerar
+dados de um delineamento com 2 fatores fixos cruzados e n
+replicações.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567890</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="co"># número de réplicas</span></span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span>
+<span></span>
+<span><span class="va">fatores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span></span>
+<span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">n</span><span class="op">)</span>,</span>
+<span>  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">fatores</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 36  2</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">fatores</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 36</span></span>
+<span><span class="co">#&gt; Columns: 2</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
+<span></span>
+<span><span class="co"># visualizando a matriz do modelo:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">A</span><span class="op">*</span><span class="va">B</span>, <span class="va">fatores</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    (Intercept) Aa2 Aa3 Bb2 Bb3 Aa2:Bb2 Aa3:Bb2 Aa2:Bb3 Aa3:Bb3</span></span>
+<span><span class="co">#&gt; 1            1   0   0   0   0       0       0       0       0</span></span>
+<span><span class="co">#&gt; 5            1   1   0   0   0       0       0       0       0</span></span>
+<span><span class="co">#&gt; 9            1   0   1   0   0       0       0       0       0</span></span>
+<span><span class="co">#&gt; 13           1   0   0   1   0       0       0       0       0</span></span>
+<span><span class="co">#&gt; 17           1   1   0   1   0       1       0       0       0</span></span>
+<span><span class="co">#&gt; 21           1   0   1   1   0       0       1       0       0</span></span>
+<span><span class="co">#&gt; 25           1   0   0   0   1       0       0       0       0</span></span>
+<span><span class="co">#&gt; 29           1   1   0   0   1       0       0       1       0</span></span>
+<span><span class="co">#&gt; 33           1   0   1   0   1       0       0       0       1</span></span>
+<span></span>
+<span><span class="va">beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  mu <span class="op">=</span> <span class="fl">10</span>, a2 <span class="op">=</span> <span class="fl">2</span>, a3<span class="op">=</span><span class="op">-</span><span class="fl">0.5</span>, b2 <span class="op">=</span> <span class="fl">0.5</span>, b3 <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, </span>
+<span>  ab22 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, ab32 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, ab23 <span class="op">=</span> <span class="fl">0.7</span>, ab33 <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">simdata1</span> <span class="op">&lt;-</span> <span class="va">fatores</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="../reference/rlm.html">rlm</a></span><span class="op">(</span><span class="op">~</span><span class="va">A</span><span class="op">*</span><span class="va">B</span>, beta <span class="op">=</span> <span class="va">beta</span>, sigma <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 36</span></span>
+<span><span class="co">#&gt; Columns: 3</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
+<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10.134592, 10.099527, 10.054623, 9.808728, 12.192128, 12.137191, 11.…</span></span>
+<span></span>
+<span><span class="co"># ajustando o modelo:</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span>, data <span class="op">=</span> <span class="va">simdata1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span></span>
+<span><span class="co">#&gt; A            2  47.99  23.993 2452.13  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; B            2  14.58   7.292  745.27  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; A:B          4   3.42   0.856   87.44 4.77e-15 ***</span></span>
+<span><span class="co">#&gt; Residuals   27   0.26   0.010                     </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span></span>
+<span><span class="co"># conferindo os coeficintes estimados:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">beta</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      beta           </span></span>
+<span><span class="co">#&gt; mu   10.0 10.0243675</span></span>
+<span><span class="co">#&gt; a2    2.0  2.0387041</span></span>
+<span><span class="co">#&gt; a3   -0.5 -0.5906028</span></span>
+<span><span class="co">#&gt; b2    0.5  0.5006331</span></span>
+<span><span class="co">#&gt; b3   -1.5 -1.4990425</span></span>
+<span><span class="co">#&gt; ab22 -1.0 -0.9626672</span></span>
+<span><span class="co">#&gt; ab32 -0.5 -0.4139756</span></span>
+<span><span class="co">#&gt; ab23  0.7  0.7071688</span></span>
+<span><span class="co">#&gt; ab33 -0.3 -0.1965599</span></span></code></pre></div>
+<p>Agora vamos gerar os dados considerando uma parametrização diferente,
+utilizando uma restrição diferente para a criação dos contrastes da
+matriz do modelo:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">simdata2</span> <span class="op">&lt;-</span> <span class="va">fatores</span>  <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="../reference/rlm.html">rlm</a></span><span class="op">(</span><span class="op">~</span><span class="va">A</span><span class="op">*</span><span class="va">B</span>, beta <span class="op">=</span> <span class="va">beta</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="st">"contr.sum"</span>, B <span class="op">=</span> <span class="st">"contr.sum"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 36</span></span>
+<span><span class="co">#&gt; Columns: 3</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
+<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 11.545358, 11.259804, 11.643654, 11.447259, 9.527187, 9.272073, 9.43…</span></span>
+<span></span>
+<span><span class="va">att</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">simdata2</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">att</span><span class="op">$</span><span class="va">model.matrix</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    (Intercept) A1 A2 B1 B2 A1:B1 A2:B1 A1:B2 A2:B2</span></span>
+<span><span class="co">#&gt; 1            1  1  0  1  0     1     0     0     0</span></span>
+<span><span class="co">#&gt; 5            1  0  1  1  0     0     1     0     0</span></span>
+<span><span class="co">#&gt; 9            1 -1 -1  1  0    -1    -1     0     0</span></span>
+<span><span class="co">#&gt; 13           1  1  0  0  1     0     0     1     0</span></span>
+<span><span class="co">#&gt; 17           1  0  1  0  1     0     0     0     1</span></span>
+<span><span class="co">#&gt; 21           1 -1 -1  0  1     0     0    -1    -1</span></span>
+<span><span class="co">#&gt; 25           1  1  0 -1 -1    -1     0    -1     0</span></span>
+<span><span class="co">#&gt; 29           1  0  1 -1 -1     0    -1     0    -1</span></span>
+<span><span class="co">#&gt; 33           1 -1 -1 -1 -1     1     1     1     1</span></span></code></pre></div>
   </main>
 </div>
 
@@ -136,7 +236,7 @@ essas variáveis, pode ser obtido da seguinte forma:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
