@@ -64,3 +64,55 @@ fit <- lm(y~x, data = simdata)  # ajustando o modelo
 coef(fit)                       # extraíndo os coeficientes estimados
 ```
 
+
+Agora vamos utilizar a função `reglin::rlm()` para gerar dados de um delineamento com 2 fatores fixos cruzados e n replicações.
+
+```{r}
+
+set.seed(1234567890)
+n <- 4 # número de réplicas
+sigma <- 0.1
+
+fatores <- expand.grid(
+  A = rep(paste0("a", 1:3), each = n),
+  B = rep(paste0("b", 1:3), each = 1)
+)
+dim(fatores)
+glimpse(fatores)
+
+# visualizando a matriz do modelo:
+unique(model.matrix(~A*B, fatores))
+
+beta <- c(
+  mu = 10, a2 = 2, a3=-0.5, b2 = 0.5, b3 = -1.5, 
+  ab22 = -1, ab32 = -0.5, ab23 = 0.7, ab33 = -0.3
+)
+
+simdata1 <- fatores |>
+  mutate(
+    y = rlm(~A*B, beta = beta, sigma = sigma)
+  )
+glimpse(simdata1)
+
+# ajustando o modelo:
+fit <- aov(y ~ A*B, data = simdata1)
+summary(fit)
+
+# conferindo os coeficintes estimados:
+cbind(beta, coef(fit))
+```
+
+Agora vamos gerar os dados considerando uma parametrização diferente, utilizando uma restrição diferente para a criação dos contrastes da matriz do modelo:
+
+
+```{r}
+simdata2 <- fatores  |>
+  mutate(
+    y = rlm(~A*B, beta = beta, sigma = sigma, contrasts = list(A = "contr.sum", B = "contr.sum"))
+  )
+glimpse(simdata2)
+
+att <- attributes(simdata2$y)
+unique(att$model.matrix)
+```
+

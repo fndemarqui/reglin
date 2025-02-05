@@ -1,6 +1,6 @@
 #' Pacote Reglin - Regressão Linear.
 #'
-#' @docType package
+#' _PACKAGE
 #' @name reglin-package
 #' @aliases reglin
 #' @description Funções e bancos de dados para a disciplina de Análise de Regressão.
