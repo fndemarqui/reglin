@@ -4,10 +4,12 @@
 \alias{R2adj}
 \title{Adjusted Coefficient of determination (R2adj)}
 \usage{
-R2adj(model)
+R2adj(object, ...)
 }
 \arguments{
-\item{model}{an object of class lm or aov with the fitted linear model.}
+\item{object}{object of class lm, usually, a result of a call to lm.}
+
+\item{...}{other objects of class lm, usually, a result of a call to lm.}
 }
 \value{
 the coefficient of determination associated with the fitted model.
