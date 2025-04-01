@@ -16,6 +16,24 @@
 NULL
 
 
+#' Tempo de estocagem de refrigerantes em prateleiras
+#'
+#' @name estocagem
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Exemplo 2.28: Banco de dados com o tempo necessário para um comerciante estocar uma prateleira de supermercado com um refrigerante bem como o número de caixas do produto estocado.
+#' @format Data frame com 20 linhas e duas variáveis:
+#' \itemize{
+#'   \item tempo: tempo gasto para o estoque da mercadoria em uma prateleira.
+#'   \item caixas: número de caixas do produto estocado (covariável).
+#' }
+#' @references Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
+#'
+NULL
+
+
+
 #' Geração de energia
 #'
 #' @name moinho
