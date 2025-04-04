@@ -23,7 +23,7 @@ NULL
 #' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
 #' @keywords datasets
 #' @description Exemplo 2.28: Banco de dados com o tempo necessário para um comerciante estocar uma prateleira de supermercado com um refrigerante bem como o número de caixas do produto estocado.
-#' @format Data frame com 20 linhas e duas variáveis:
+#' @format Data frame com 15 linhas e duas variáveis:
 #' \itemize{
 #'   \item tempo: tempo gasto para o estoque da mercadoria em uma prateleira.
 #'   \item caixas: número de caixas do produto estocado (covariável).
@@ -56,7 +56,7 @@ NULL
 #' @docType data
 #' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
 #' @keywords datasets
-#' @description Exemplo: Uma engarrafadora de refrigerantes está analisando as rotas de serviço das máquinas de venda automática em seu sistema de distribuição. A empresa está interessada em prever a quantidade de tempo necessária para a rota motorista para atender as máquinas de venda automática em um ponto de venda. Esta atividade de serviço inclui estocar a máquina com produtos de bebidas e a realização de pequenas manutenções. O engenheiro industrial responsável pelo estudo sugeriu que duas variáveis mais importantes que afetam o tempo de entrega são o número de caixas de produto estocado e a distância percorrida pelo roteirista . Foram coletadas 25 observações sobre o tempo de entrega.
+#' @description Exemplo: Uma engarrafadora de refrigerantes está analisando as rotas de serviço das máquinas de venda automática em seu sistema de distribuição. A empresa está interessada em prever a quantidade de tempo necessária para a rota percorrida pelo motorista para atender as máquinas de venda automática em um ponto de venda. Esta atividade de serviço inclui estocar a máquina com produtos de bebidas e a realização de pequenas manutenções. O engenheiro industrial responsável pelo estudo sugeriu que duas variáveis mais importantes que afetam o tempo de entrega são o número de caixas de produto estocado e a distância percorrida pelo roteirista . Foram coletadas 25 observações sobre o tempo de entrega.
 #' @format Data frame com 25 linhas e 3 variáveis:
 #' \itemize{
 #'   \item tempo: tempo de entrega (em minutos)

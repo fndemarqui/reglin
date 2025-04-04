@@ -5,7 +5,7 @@
 \alias{estocagem}
 \title{Tempo de estocagem de refrigerantes em prateleiras}
 \format{
-Data frame com 20 linhas e duas variáveis:
+Data frame com 15 linhas e duas variáveis:
 \itemize{
 \item tempo: tempo gasto para o estoque da mercadoria em uma prateleira.
 \item caixas: número de caixas do produto estocado (covariável).
