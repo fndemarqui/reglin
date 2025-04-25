@@ -24,8 +24,11 @@ R2adj <- function(object, ...){
       R2adj = r2adj
     ) %>%
       dplyr::arrange(R2adj)
+    return(R2adj)
+  }else{
+    return(r2adj)
   }
-  return(R2adj)
+
 }
 
 # R2adj <- function(model){
@@ -63,8 +66,11 @@ R2 <- function(object, ...){
       R2 = r2
     ) %>%
       dplyr::arrange(R2)
+    return(R2)
+  }else{
+    return(r2)
   }
-  return(R2)
+
 }
 
 
