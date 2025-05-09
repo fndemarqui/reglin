@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">reglin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,8 +102,8 @@ com
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 50</span></span>
 <span><span class="co">#&gt; Columns: 2</span></span>
-<span><span class="co">#&gt; $ x <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.34592454, 0.99527131, 0.54622688, -1.91272392, 1.92128431, 1.37191…</span></span>
-<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8.542454, 8.630938, 7.789636, 11.463493, 4.508771, 6.334617, 11.9887…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ x <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.34592454<span style="color: #949494;">, </span>0.99527131<span style="color: #949494;">, </span>0.54622688<span style="color: #949494;">, </span>-1.91272392<span style="color: #949494;">, </span>1.92128431<span style="color: #949494;">, </span>1.37191…</span></span>
+<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8.542454<span style="color: #949494;">, </span>8.630938<span style="color: #949494;">, </span>7.789636<span style="color: #949494;">, </span>11.463493<span style="color: #949494;">, </span>4.508771<span style="color: #949494;">, </span>6.334617<span style="color: #949494;">, </span>11.9887…</span></span></code></pre></div>
 <p>O diagrama de dispersão entre
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
 e
@@ -144,8 +144,8 @@ replicações.</p>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">fatores</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 36</span></span>
 <span><span class="co">#&gt; Columns: 2</span></span>
-<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
-<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>…</span></span>
 <span></span>
 <span><span class="co"># visualizando a matriz do modelo:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">A</span><span class="op">*</span><span class="va">B</span>, <span class="va">fatores</span><span class="op">)</span><span class="op">)</span></span>
@@ -172,9 +172,9 @@ replicações.</p>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 36</span></span>
 <span><span class="co">#&gt; Columns: 3</span></span>
-<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
-<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
-<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10.134592, 10.099527, 10.054623, 9.808728, 12.192128, 12.137191, 11.…</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10.134592<span style="color: #949494;">, </span>10.099527<span style="color: #949494;">, </span>10.054623<span style="color: #949494;">, </span>9.808728<span style="color: #949494;">, </span>12.192128<span style="color: #949494;">, </span>12.137191<span style="color: #949494;">, </span>11.…</span></span>
 <span></span>
 <span><span class="co"># ajustando o modelo:</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span>, data <span class="op">=</span> <span class="va">simdata1</span><span class="op">)</span></span>
@@ -210,9 +210,9 @@ matriz do modelo:</p>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">simdata2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 36</span></span>
 <span><span class="co">#&gt; Columns: 3</span></span>
-<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1, a1, a1, a1, a2, a2, a2, a2, a3, a3, a3, a3, a1, a1, a1, a1, a2, …</span></span>
-<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b1, b2, b2, b2, b2, b2, …</span></span>
-<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 11.545358, 11.259804, 11.643654, 11.447259, 9.527187, 9.272073, 9.43…</span></span>
+<span><span class="co">#&gt; $ A <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a3<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a1<span style="color: #949494;">, </span>a2<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ B <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b1<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>b2<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ y <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 11.545358<span style="color: #949494;">, </span>11.259804<span style="color: #949494;">, </span>11.643654<span style="color: #949494;">, </span>11.447259<span style="color: #949494;">, </span>9.527187<span style="color: #949494;">, </span>9.272073<span style="color: #949494;">, </span>9.43…</span></span>
 <span></span>
 <span><span class="va">att</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">simdata2</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">att</span><span class="op">$</span><span class="va">model.matrix</span><span class="op">)</span></span>
@@ -236,7 +236,7 @@ matriz do modelo:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

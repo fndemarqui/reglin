@@ -214,3 +214,21 @@ NULL
 #' @references  Montgomery, D. C., Peck, E. A., and Vining, G. G. (2012) Introduction to Linear Regression Analysis, 5th Edition, Boca Raton: Wiley.
 #'
 NULL
+
+
+
+#' PIB per capita e expectativa de vida de 211 países
+#'
+#' @name wdi
+#' @docType data
+#' @author Fábio N. Demarqui \email{fndemarqui@est.ufmg.br}
+#' @keywords datasets
+#' @description Conjunto de dados contendo o PIB per capita e a expectativa de vida de 211 países.
+#' @format Data frame com 211 linhas e duas variáveis:
+#' \itemize{
+#'   \item pib: PIB per capita, ou Produto Interno Bruto por habitante; o PIB per capita é um indicador econômico que reflete a riqueza média produzida por cada pessoa em um determinado local, como um país ou região, e é calculado dividindo o Produto Interno Bruto total pelo número de habitantes.
+#'   \item expectativa: expectativa de vida (em anos)
+#' }
+#' @references   Izbicki, R. e Santos, T. M. dos. Aprendizado de máquina: uma abordagem estatística. 1ª edição. 2020. 272 páginas. ISBN: 978-65-00-02410-4.
+#'
+NULL
