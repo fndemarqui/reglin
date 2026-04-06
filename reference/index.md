@@ -1,0 +1,55 @@
+# Package index
+
+## All functions
+
+- [`R2()`](https://fndemarqui.github.io/reglin/reference/R2.md) :
+  Coefficient of determination (R2)
+- [`R2adj()`](https://fndemarqui.github.io/reglin/reference/R2adj.md) :
+  Adjusted Coefficient of determination (R2adj)
+- [`acetileno`](https://fndemarqui.github.io/reglin/reference/acetileno.md)
+  : Percentual de conversão de n-heptano para acetileno
+- [`entregas`](https://fndemarqui.github.io/reglin/reference/entregas.md)
+  : Tempo de Entrega de Refrigerantes
+- [`estocagem`](https://fndemarqui.github.io/reglin/reference/estocagem.md)
+  : Tempo de estocagem de refrigerantes em prateleiras
+- [`fibras`](https://fndemarqui.github.io/reglin/reference/fibras.md) :
+  Força de fibras de monofilamento
+- [`gas`](https://fndemarqui.github.io/reglin/reference/gas.md) :
+  Isolamento térmico de casa e consumo de gás
+- [`gginfluence()`](https://fndemarqui.github.io/reglin/reference/gginfluence.md)
+  : ggplot version of influence diagnostic plots for an lm object
+- [`ggresiduals()`](https://fndemarqui.github.io/reglin/reference/ggresiduals.md)
+  : ggplot version of plot diagnostics for an lm object
+- [`moinho`](https://fndemarqui.github.io/reglin/reference/moinho.md) :
+  Geração de energia
+- [`moscas`](https://fndemarqui.github.io/reglin/reference/moscas.md) :
+  Longevidade de moscas-das-frutas
+- [`ouricos`](https://fndemarqui.github.io/reglin/reference/ouricos.md)
+  : Tamanho de ouriços
+- [`press()`](https://fndemarqui.github.io/reglin/reference/press.md) :
+  PRESS statistic
+- [`pureza`](https://fndemarqui.github.io/reglin/reference/pureza.md) :
+  Pureza do oxigênio
+- [`reglin-package`](https://fndemarqui.github.io/reglin/reference/reglin-package.md)
+  [`reglin`](https://fndemarqui.github.io/reglin/reference/reglin-package.md)
+  : Pacote Reglin - Regressão Linear.
+- [`resistencia`](https://fndemarqui.github.io/reglin/reference/resistencia.md)
+  : Resistência de papel
+- [`restaurantes`](https://fndemarqui.github.io/reglin/reference/restaurantes.md)
+  : Efeito de propaganda sobre as receitas de restaurantes
+- [`rlm()`](https://fndemarqui.github.io/reglin/reference/rlm.md) : rlm:
+  generation of data with a linear regression structure
+- [`se()`](https://fndemarqui.github.io/reglin/reference/se.md) :
+  Generic S3 method se
+- [`se(`*`<lm>`*`)`](https://fndemarqui.github.io/reglin/reference/se.lm.md)
+  : Estimated standard errors for the regression coefficients
+- [`standardization()`](https://fndemarqui.github.io/reglin/reference/standardization.md)
+  : Variable standardization
+- [`tab_anova()`](https://fndemarqui.github.io/reglin/reference/tab_anova.md)
+  : ANOVA table for linear models
+- [`tensao`](https://fndemarqui.github.io/reglin/reference/tensao.md) :
+  Queda de tensão da bateria em um motor de míssil guiado
+- [`testResiduals()`](https://fndemarqui.github.io/reglin/reference/testResiduals.md)
+  : Residuals Tests for Linear Regression Models
+- [`wdi`](https://fndemarqui.github.io/reglin/reference/wdi.md) : PIB
+  per capita e expectativa de vida de 211 países
