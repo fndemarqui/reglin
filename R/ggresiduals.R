@@ -35,7 +35,7 @@ ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPl
 }
 
 defaultPlots <- function(object, which = 1:4, alpha = alpha){
-  df <- fortify(object)
+  df <- broom::augment(object)
   df1 <- length(coef(object))
   df2 <- object$df.residual
   f <- qf(0.5, df1, df2)
@@ -43,40 +43,40 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha){
   p <- df1
   n <- length(object$residuals)
 
-  p1 <- ggplot(df, aes(.data$.fitted, .data$.stdresid)) +
+  p1 <- ggplot(df, aes(.data$.fitted, .data$.std.resid)) +
     geom_point() +
     geom_hline(yintercept = 0) +
     geom_smooth(se = FALSE) +
     ggtitle("residuals vs fitted")
 
   # p2 <- ggplot(df) +
-  #   stat_qq(aes(sample = .stdresid)) +
+  #   stat_qq(aes(sample = .std.resid)) +
   #   qqplotr::stat_qq_band() +
   #   geom_abline(color = "blue") +
   #   ggtitle("Normal Q-Q")
 
-  p2 <- ggplot(df, aes(sample = .data$.stdresid)) +
+  p2 <- ggplot(df, aes(sample = .data$.std.resid)) +
     qqplotr::stat_qq_band(alpha = 0.4) +
     qqplotr::stat_qq_line(color = "blue") +
     qqplotr::stat_qq_point() +
     ggtitle("Normal Q-Q")
 
-  p3 <- ggplot(df, aes(.data$.fitted, sqrt(abs(.data$.stdresid)))) +
+  p3 <- ggplot(df, aes(.data$.fitted, sqrt(abs(.data$.std.resid)))) +
     geom_point() +
     geom_smooth(se = FALSE)  +
     ggtitle("scale-location")
 
 
   cutoff <- qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
-  bound <- 1.01*max(cutoff, abs(df$.stdresid))
+  bound <- 1.01*max(cutoff, abs(df$.std.resid))
 
-  p4 <- ggplot(df, aes(.data$.hat, .data$.stdresid)) +
+  p4 <- ggplot(df, aes(.data$.hat, .data$.std.resid)) +
     geom_point() +
     geom_abline(intercept = c(-cutoff, cutoff), slope = 0, color = "blue", linetype="dashed") +
     geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
-    geom_smooth(se = FALSE, size = 0.5) +
+    geom_smooth(se = FALSE, linewidth = 0.5) +
     ggtitle("residuals vs leverage") +
-    ylim(min(df$.stdresid, -bound), max(df$.stdresid, bound))
+    ylim(min(df$.std.resid, -bound), max(df$.std.resid, bound))
 
   tb <- df %>%
     mutate(
