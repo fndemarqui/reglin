@@ -6,10 +6,8 @@ utilizados na disciplina de Análise de Regressão Linear (EST035).
 
 ## Installation
 
-Você pode instalar a versão de desenvolvimento do pacote **reglin** a
-partir do GitHub da seguinte forma:
+O pacote **reglin** pode ser instalado da seguinte:
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("fndemarqui/reglin")
+install.packages('reglin', repos = c('https://fndemarqui.r-universe.dev', 'https://cloud.r-project.org'))
 ```

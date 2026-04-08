@@ -18,11 +18,10 @@ Funções para análise e conjuntos de dados dos exemplos e exercícios utilizad
 
 ## Installation
 
-Você pode instalar a versão de desenvolvimento do pacote __reglin__ a partir do GitHub da seguinte forma:
+O pacote __reglin__ pode ser instalado da seguinte:
 
 
 ```{r, eval=FALSE}
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("fndemarqui/reglin")
+install.packages('reglin', repos = c('https://fndemarqui.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
