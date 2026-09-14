@@ -73,7 +73,7 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha){
   p4 <- ggplot(df, aes(.data$.hat, .data$.std.resid)) +
     geom_point() +
     geom_abline(intercept = c(-cutoff, cutoff), slope = 0, color = "blue", linetype="dashed") +
-    geom_vline(xintercept = 2*p/n, color = "blue", linetype="dashed") +
+    geom_vline(xintercept = 3*p/n, color = "blue", linetype="dashed") +
     geom_smooth(se = FALSE, linewidth = 0.5) +
     ggtitle("residuals vs leverage") +
     ylim(min(df$.std.resid, -bound), max(df$.std.resid, bound))

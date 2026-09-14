@@ -12,19 +12,23 @@ export(standardization)
 export(tab_anova)
 export(testResiduals)
 import(ggplot2)
-importFrom(dplyr,"%>%")
-importFrom(dplyr,bind_cols)
-importFrom(dplyr,mutate)
-importFrom(stats,coef)
-importFrom(stats,lm)
-importFrom(stats,model.frame)
-importFrom(stats,model.matrix)
-importFrom(stats,model.response)
-importFrom(stats,pf)
-importFrom(stats,qf)
-importFrom(stats,residuals)
-importFrom(stats,rnorm)
-importFrom(stats,rstandard)
-importFrom(stats,vcov)
+importFrom(dplyr,
+  "%>%",
+  bind_cols,
+  mutate
+)
+importFrom(stats,
+  coef,
+  lm,
+  model.frame,
+  model.matrix,
+  model.response,
+  pf,
+  qf,
+  residuals,
+  rnorm,
+  rstandard,
+  vcov
+)
 importFrom(tibble,tibble)
 importFrom(tidyr,pivot_longer)
