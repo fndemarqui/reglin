@@ -1,6 +1,7 @@
 # Introdução ao pacote reglin
 
 ``` r
+
 library(reglin)
 library(tidyverse)
 library(ggpubr)
@@ -21,6 +22,7 @@ ggplot(pureza, aes(x=percentual, y=pureza)) +
 ![](reglin_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
+
 
 fit <- lm(pureza ~ percentual, data = pureza)
 summary(fit)

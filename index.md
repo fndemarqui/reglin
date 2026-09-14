@@ -8,5 +8,6 @@ utilizados na disciplina de Análise de Regressão Linear (EST035).
 O pacote **reglin** pode ser instalado da seguinte:
 
 ``` r
+
 install.packages('reglin', repos = c('https://fndemarqui.r-universe.dev', 'https://cloud.r-project.org'))
 ```

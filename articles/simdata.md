@@ -2,14 +2,19 @@
 
 Vamos utilizar a função
 [`reglin::rlm()`](https://fndemarqui.github.io/reglin/reference/rlm.md)
-para gerar uma amostra de $n = 50$ observações considerando o seguinte
+para gerar uma amostra de $`n=50`$ observações considerando o seguinte
 modelo de regressão linear simples:
 
-$$y_{i} = 10 - 2x_{i} + \epsilon_{i},$$ em que
-$\epsilon_{i}\overset{\text{i.i.d.}}{\sim}N(0,\sigma)$,
-$i = 1,\cdots,n,$, com $\sigma = 2$.
+``` math
+\begin{equation}
+  y_{i} = 10 - 2x_{i} + \epsilon_{i}, 
+\end{equation}
+```
+em que $`\epsilon_{i} \overset{\text{i.i.d.}}{\sim} N(0, \sigma)`$,
+$`i=1, \cdots, n,`$, com $`\sigma = 2`$.
 
 ``` r
+
 # anexando os pacotes necessários:
 library(reglin)
 library(tidyverse)
@@ -35,11 +40,12 @@ glimpse(simdata)
 #> $ y <dbl> 8.542454, 8.630938, 7.789636, 11.463493, 4.508771, 6.334617, 11.9887…
 ```
 
-O diagrama de dispersão entre $x$ e $y$, fundamental para a verificação
-da existência de relação linear entre essas variáveis, pode ser obtido
-da seguinte forma:
+O diagrama de dispersão entre $`x`$ e $`y`$, fundamental para a
+verificação da existência de relação linear entre essas variáveis, pode
+ser obtido da seguinte forma:
 
 ``` r
+
 
 # plotando o diagrama de dispersão:
 ggplot(simdata, aes(x=x, y=y)) +
@@ -55,6 +61,7 @@ Os coeficientes estimados são apresentados a seguir:
 
 ``` r
 
+
 fit <- lm(y~x, data = simdata)  # ajustando o modelo
 coef(fit)                       # extraíndo os coeficientes estimados
 #> (Intercept)           x 
@@ -67,6 +74,7 @@ para gerar dados de um delineamento com 2 fatores fixos cruzados e n
 replicações.
 
 ``` r
+
 
 set.seed(1234567890)
 n <- 4 # número de réplicas
@@ -143,6 +151,7 @@ utilizando uma restrição diferente para a criação dos contrastes da
 matriz do modelo:
 
 ``` r
+
 simdata2 <- fatores  |>
   mutate(
     y = rlm(~A*B, beta = beta, sigma = sigma, contrasts = list(A = "contr.sum", B = "contr.sum"))

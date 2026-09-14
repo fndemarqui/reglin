@@ -2,6 +2,7 @@
 
 ``` r
 
+
 library(tidyverse)
 library(reglin)
 
@@ -34,24 +35,28 @@ ggresiduals(fit, type = "default")
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
+
 ggresiduals(fit, type = "crPlots")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-2.png)
 
 ``` r
+
 ggresiduals(fit, type = "avPlots")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-3.png)
 
 ``` r
+
 ggresiduals(fit, type = "covPlots")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-4.png)
 
 ``` r
+
 
 
 # testes:
@@ -86,24 +91,28 @@ gginfluence(fit, measure = "leverage")
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-5.png)
 
 ``` r
+
 gginfluence(fit, measure = "dfbetas")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-6.png)
 
 ``` r
+
 gginfluence(fit, measure = "cooksd")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-7.png)
 
 ``` r
+
 gginfluence(fit, measure = "dffits")
 ```
 
 ![](ggresiduals_files/figure-html/unnamed-chunk-2-8.png)
 
 ``` r
+
 gginfluence(fit, measure = "covratio")
 ```
 
