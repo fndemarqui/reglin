@@ -34,8 +34,8 @@ ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPl
   )
 }
 
-defaultPlots <- function(object, which = 1:4, alpha = alpha){
-  df <- broom::augment(object)
+defaultPlots <- function(object, which = 1:4, alpha = alpha, ...){
+  df <- broom::augment(object, ...)
   df1 <- length(coef(object))
   df2 <- object$df.residual
   f <- qf(0.5, df1, df2)
