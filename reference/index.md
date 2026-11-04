@@ -32,6 +32,8 @@
   PRESS statistic
 - [`pureza`](https://fndemarqui.github.io/reglin/reference/pureza.md) :
   Pureza do oxigênio
+- [`qresiduals()`](https://fndemarqui.github.io/reglin/reference/qresiduals.md)
+  : Quantile residuals
 - [`reglin-package`](https://fndemarqui.github.io/reglin/reference/reglin-package.md)
   [`reglin`](https://fndemarqui.github.io/reglin/reference/reglin-package.md)
   : Pacote Reglin - Regressão Linear.
