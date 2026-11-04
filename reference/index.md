@@ -8,6 +8,8 @@
   Adjusted Coefficient of determination (R2adj)
 - [`acetileno`](https://fndemarqui.github.io/reglin/reference/acetileno.md)
   : Percentual de conversão de n-heptano para acetileno
+- [`covPlots()`](https://fndemarqui.github.io/reglin/reference/covPlots.md)
+  : Covariates vs standardized residuals plots
 - [`entregas`](https://fndemarqui.github.io/reglin/reference/entregas.md)
   : Tempo de Entrega de Refrigerantes
 - [`estocagem`](https://fndemarqui.github.io/reglin/reference/estocagem.md)
@@ -37,6 +39,8 @@
   : Resistência de papel
 - [`restaurantes`](https://fndemarqui.github.io/reglin/reference/restaurantes.md)
   : Efeito de propaganda sobre as receitas de restaurantes
+- [`rglm()`](https://fndemarqui.github.io/reglin/reference/rglm.md) :
+  rglm: data generation for generalized linear models
 - [`rlm()`](https://fndemarqui.github.io/reglin/reference/rlm.md) : rlm:
   generation of data with a linear regression structure
 - [`se()`](https://fndemarqui.github.io/reglin/reference/se.md) :
