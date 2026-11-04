@@ -9,6 +9,7 @@
 #' @importFrom tibble tibble
 #' @importFrom tidyr pivot_longer
 #' @import ggplot2
+#' @import Rdpack
 #' @references
 #'
 #' Montgomery, D. C., Peck, E. A, and Vining, G. G, (2016). Introduction to Linear Regression Analysis, 5ª. Edição, New York: Wiley.

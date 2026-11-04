@@ -1,6 +1,6 @@
 Package: reglin
 Title: Regressão Linear 
-Version: 0.0.9.1
+Version: 0.1.0
 Authors@R: person(given = "Fabio", family = "Demarqui", email = "fndemarqui@est.ufmg.br", role = c("aut", "cre"))
 Description: Funções para análise e conjuntos de dados dos exemplos e exercícios utilizados na disciplina de Análise de Regressão Linear (EST035).
 License: MIT + file LICENSE
@@ -11,12 +11,17 @@ Depends:
     ggplot2,
     R (>= 3.5)
 Imports:
+  bellreg,
   broom,
   car, 
   dplyr,
   gridExtra,
+  LambertW,
+  nortest,
+  purrr,
   qqplotr,
   Rdpack,
+  statmod,
   tibble,
   tidyr
 RdMacros: Rdpack  
@@ -29,4 +34,4 @@ Suggests:
     plotly,
     tidyverse
 VignetteBuilder: knitr
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1

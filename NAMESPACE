@@ -3,14 +3,17 @@
 S3method(se,lm)
 export(R2)
 export(R2adj)
+export(covPlots)
 export(gginfluence)
 export(ggresiduals)
 export(press)
+export(rglm)
 export(rlm)
 export(se)
 export(standardization)
 export(tab_anova)
 export(testResiduals)
+import(Rdpack)
 import(ggplot2)
 importFrom(dplyr,
   "%>%",

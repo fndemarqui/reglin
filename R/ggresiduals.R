@@ -34,8 +34,32 @@ ggresiduals <- function(object, type = c("default", "crPlots", "avPlots", "covPl
   )
 }
 
-defaultPlots <- function(object, which = 1:4, alpha = alpha, ...){
-  df <- broom::augment(object, ...)
+#' Default diagnostic plots for lm and glm objects
+#'
+#' Internal function called by [ggresiduals()] when `type = "default"`.
+#'
+#' @param object an object of class `lm` or `glm`.
+#' @param which subset of `1:6` indicating which plots to draw:
+#' residuals vs fitted, normal (or half-normal) Q-Q, predicted vs observed,
+#' residuals vs leverage, Cook's distance, and Cook's distance vs leverage.
+#' @param alpha significance level used to compute the cutoff for outlying
+#' residuals in the residuals vs leverage plot.
+#' @param type.residuals type of residuals: `"quantile"` (default), `"deviance"` or `"pearson"`
+#' .
+#' @param ... currently unused.
+#' @return A list with a single ggplot object if `length(which) == 1`;
+#' otherwise a grid of plots is drawn via [gridExtra::grid.arrange()].
+#' @noRd
+defaultPlots <- function(object, which = 1:4, alpha = alpha,
+                         type.residuals = c("quantile", "deviance", "pearson"), ...){
+  type.residuals <- match.arg(type.residuals)
+  if(type.residuals == "quantile"){
+    df <- broom::augment(object)
+    df$.std.resid <-  qresid(object)
+  }else{
+    df <- broom::augment(object, type.residuals = type.residuals)
+  }
+
   df1 <- length(coef(object))
   df2 <- object$df.residual
   f <- qf(0.5, df1, df2)
@@ -49,47 +73,92 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha, ...){
     geom_smooth(se = FALSE) +
     ggtitle("residuals vs fitted")
 
-  # p2 <- ggplot(df) +
-  #   stat_qq(aes(sample = .std.resid)) +
-  #   qqplotr::stat_qq_band() +
-  #   geom_abline(color = "blue") +
-  #   ggtitle("Normal Q-Q")
+  isGLM <- inherits(object, "glm")
 
-  p2 <- ggplot(df, aes(sample = .data$.std.resid)) +
-    qqplotr::stat_qq_band(alpha = 0.4) +
-    qqplotr::stat_qq_line(color = "blue") +
-    qqplotr::stat_qq_point() +
-    ggtitle("Normal Q-Q")
+  if(isGLM){
+    set.seed(123)
+    limits <- envelop(fit, ...)
+    p2 <- ggplot(limits, aes(x = theoretical)) +
+      geom_ribbon(
+        aes(ymin = lower, ymax = upper),
+        fill = "grey70",
+        alpha = 0.7
+      ) +
+      geom_segment(
+        data = data.frame(
+          x = min(limits$theoretical),
+          xend = max(limits$theoretical),
+          y = min(c(limits$sample, limits$theoretical)),
+          yend = max(c(limits$sample, limits$theoretical))
+        ),
+        aes(x = x, y = y, xend = xend, yend = yend),
+        color = "blue"
+      ) +
+      geom_point(aes(y = sample)) +
+      ylab("sample")
 
-  p3 <- ggplot(df, aes(.data$.fitted, sqrt(abs(.data$.std.resid)))) +
-    geom_point() +
-    geom_smooth(se = FALSE)  +
-    ggtitle("scale-location")
 
+      df$.pred <- stats::predict(object, type = "response")
+      df$.obs <- if(is.null(object$y)){
+        stats::model.response(stats::model.frame(object))
+      }else{
+        object$y
+      }
+      if(!is.numeric(object$y)){
+        df$.obs <- as.numeric(df$.obs)
+      }
+      p3 <- ggplot(df, aes(.data$.pred, .data$.obs)) +
+        geom_point() +
+        geom_abline(slope = 1, intercept = 0, color = "blue")  +
+        labs(x = "predicted", y = "observed") +
+        ggtitle("predicted vs observed")
 
-  cutoff <- qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
-  bound <- 1.01*max(cutoff, abs(df$.std.resid))
+      cutoff <- stats::qnorm(alpha/(2*n), lower.tail=FALSE)
+      bound <- 1.01*max(cutoff, abs(df$.std.resid))
 
-  p4 <- ggplot(df, aes(.data$.hat, .data$.std.resid)) +
-    geom_point() +
-    geom_abline(intercept = c(-cutoff, cutoff), slope = 0, color = "blue", linetype="dashed") +
-    geom_vline(xintercept = 3*p/n, color = "blue", linetype="dashed") +
-    geom_smooth(se = FALSE, linewidth = 0.5) +
-    ggtitle("residuals vs leverage") +
-    ylim(min(df$.std.resid, -bound), max(df$.std.resid, bound))
+      p4 <- ggplot(df, aes(.data$.hat, .data$.std.resid)) +
+        geom_point() +
+        geom_abline(intercept = c(-bound, bound), slope = 0, color = "blue", linetype="dashed") +
+        geom_vline(xintercept = 3*p/n, color = "blue", linetype="dashed") +
+        geom_smooth(se = FALSE, linewidth = 0.5) +
+        ggtitle("residuals vs leverage") +
+        ylim(min(df$.std.resid, -bound), max(df$.std.resid, bound))
+
+      y_lab <- ifelse(type.residuals == "quantile", "quantile resid", paste("std. ", type.residuals, "resid"))
+      p1 <- p1 + labs(y = y_lab)
+      p4 <- p4 + labs(y = y_lab)
+
+  }else{
+    p2 <- ggplot(df, aes(sample = .data$.std.resid)) +
+      qqplotr::stat_qq_band(alpha = 0.4) +
+      qqplotr::stat_qq_line(color = "blue") +
+      qqplotr::stat_qq_point() +
+      ggtitle("Normal Q-Q")
+
+    p3 <- ggplot(df, aes(.data$.fitted, sqrt(abs(.data$.std.resid)))) +
+      geom_point() +
+      geom_smooth(se = FALSE)  +
+      ggtitle("scale-location")
+
+    cutoff <- stats::qt(alpha/(2*n), df = df2-1, lower.tail=FALSE)
+    bound <- 1.01*max(cutoff, abs(df$.std.resid))
+    y_lab <- ifelse(type.residuals == "quantile", "quantile resid", paste("std. ", type.residuals, "resid"))
+
+    p4 <- ggplot(df, aes(.data$.hat, .data$.std.resid)) +
+      geom_point() +
+      geom_abline(intercept = c(-cutoff, cutoff), slope = 0, color = "blue", linetype="dashed") +
+      geom_vline(xintercept = 3*p/n, color = "blue", linetype="dashed") +
+      geom_smooth(se = FALSE, linewidth = 0.5) +
+      ggtitle("residuals vs leverage") +
+      ylim(min(df$.std.resid, -bound), max(df$.std.resid, bound))
+  }
 
   tb <- df %>%
     mutate(
       influent = .data$.cooksd > f
     )
 
-  # p5 <- ggplot(df, aes(x = seq_along(.cooksd), y = .cooksd)) +
-  #   geom_point() +
-  #   geom_segment(aes(x = seq_along(.cooksd), y = 0, xend = seq_along(.cooksd), yend = .cooksd)) +
-  #   ggtitle("Cook's distance") +
-  #   labs(x="observations")
-
-  p5<- ggplot(tb, aes(x = seq_along(.data$.cooksd), y = .data$.cooksd, color = .data$influent)) +
+  p5 <- ggplot(tb, aes(x = seq_along(.data$.cooksd), y = .data$.cooksd, color = .data$influent)) +
     geom_point() +
     scale_color_manual(values = c("FALSE" = "black", "TRUE" = "red")) +
     geom_segment(aes(x = seq_along(.data$.cooksd), y = 0, xend = seq_along(.data$.cooksd), yend = .data$.cooksd)) +
@@ -107,42 +176,87 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha, ...){
   p <- list(p1, p2, p3, p4, p5, p6)[which]
   q <- length(p)
   if(q==1){
-    p
+    p[[1]]
   }else{
     gridExtra::grid.arrange(grobs = p, ncol = 2)
   }
 }
 
 
-
-covPlots <- function(object){
-  mf <- data.frame(
-    stdresid = rstandard(object)
-  ) %>%
-    dplyr::bind_cols(
-      model.frame(object)[, -1, drop = FALSE]
+#' Covariates vs standardized residuals plots
+#'
+#' Plots the standardized residuals against each covariate of the model.
+#' Also called by [ggresiduals()] when `type = "covPlots"`.
+#'
+#' @param object an object of class `lm` or `glm`.
+#' @param type.residuals type of residuals used for `glm` objects:
+#' `"deviance"`, `"pearson"` or `"quantile"`. Ignored for `lm` objects, for
+#' which standardized residuals are used.
+#' @param variable optional character string with the name of a single
+#' covariate to plot; if `NULL` (default), all covariates are plotted.
+#' @return Called for its side effect of drawing the plot(s).
+#' @export
+covPlots <- function(object, type.residuals = c("quantile", "deviance", "pearson"), variable = NULL){
+  type.residuals <- match.arg(type.residuals)
+  isGLM <- inherits(object, "glm")
+  if(isGLM){
+    residuals <- switch(type.residuals,
+                        deviance = rstandard(object, type = "deviance"),
+                        pearson = rstandard(object, type = "pearson"),
+                        quantile = qresid(object)
     )
+  }else{
+    residuals <- rstandard(object)
+  }
 
-  labels <- names(mf)
-  p <- ncol(mf)-1
-  plots <- list()
-  for(j in 1:p){
+  if(isGLM){
+    lab_resid <- paste0(type.residuals, " residuals")
+  }else{
+    lab_resid <- "std residuals"
+  }
+
+  mf <- eval(object$call$data)
+  resp_vars <- all.vars(stats::formula(object)[[2]])
+  mf <- mf %>%
+    dplyr::select(-resp_vars)
+
+  if(is.null(variable)){
+    labels <- names(mf)
+    p <- ncol(mf)
+    plots <- list()
+    for(j in 1:p){
+      df <- data.frame(
+        x = mf[,j],
+        residuals = residuals
+      )
+      names(df) <- c("x", "residuals")
+      plots[[j]] <- ggplot(df, aes(x = .data$x, y = .data$residuals)) +
+        geom_point() +
+        geom_smooth(se = FALSE) +
+        xlab(labels[j]) +
+        ylab(lab_resid)
+    }
+    if(p==1){
+      gridExtra::grid.arrange(grobs = plots)
+    }else{
+      gridExtra::grid.arrange(grobs = plots, ncol = 2)
+    }
+  }else{
+    if(!variable %in% names(mf)){
+      stop("Variable not found in the model data.")
+    }
     df <- data.frame(
-      x = mf[,j+1],
-      stdresid = mf$stdresid
+      x = mf[[variable]],
+      residuals = residuals
     )
-    plots[[j]] <- ggplot(df, aes(x = .data$x, y = .data$stdresid)) +
+    names(df) <- c("x", "residuals")
+    p <- ggplot(df, aes(x = .data$x, y = .data$residuals)) +
       geom_point() +
       geom_smooth(se = FALSE) +
-      xlab(labels[j+1])
-  }
-  if(p==1){
-    gridExtra::grid.arrange(grobs = plots)
-  }else{
-    gridExtra::grid.arrange(grobs = plots, ncol = 2)
+      xlab(variable) +
+      ylab(lab_resid)
+    print(p)
   }
 
 }
-
-
 

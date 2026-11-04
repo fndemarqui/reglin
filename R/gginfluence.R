@@ -96,17 +96,17 @@ plot_dfbetas <- function(object){
       dfbetas = as.data.frame(stats::dfbetas(object))
     ) %>%
     pivot_longer(
-      cols = -obs,
+      cols = -.data$obs,
       names_to = "coefficient",
       values_to = "value"
     )
 
 
-  ggplot(dfbetas, aes(x = obs, y = .data$value)) +
+  ggplot(dfbetas, aes(x = .data$obs, y = .data$value)) +
     geom_abline(intercept = 0, slope = 0, color = "blue") +
     geom_abline(intercept = c(-1, 1), slope = 0, color = "blue", linetype="dashed") +
     geom_point() +
-    geom_segment(aes(x = obs, y = 0, xend = obs, yend = .data$value)) +
+    geom_segment(aes(x = .data$obs, y = 0, xend = .data$obs, yend = .data$value)) +
     ggtitle("DFbetaS") +
     labs(x="observations", y="dfbetas") +
     ylim(range(-1, 1, dfbetas$value)) +

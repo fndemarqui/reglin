@@ -49,7 +49,7 @@ standardization <- function(x, type = c("normal", "length")){
   type <- match.arg(type)
   u <- (x-mean(x))
   switch(type,
-         "normal" = u/sd(x),
+         "normal" = u/stats::sd(x),
          "length" = u/sqrt(sum(u^2)),
   )
 }

@@ -9,13 +9,25 @@
 
 testResiduals <- function(object, ...){
 
-  cat("\n")
-  cat("Shapiro-Wilk normality test", "\n")
-  sw <- stats::shapiro.test(residuals(object))
-  df <- data.frame(
-    W = as.numeric(sw$statistic),
-    "p-value" = sw$p.value
-  )
+  resid <- residuals(object)
+  n <- length(resid)
+  if(n> 5000){
+    cat("Anderson-Darling normality test", "\n")
+    ad <- nortest::ad.test(resid)
+    df <- data.frame(
+      A = as.numeric(ad$statistic),
+      "p-value" = ad$p.value
+    )
+  }else{
+    cat("\n")
+    cat("Shapiro-Wilk normality test", "\n")
+    sw <- stats::shapiro.test(resid)
+    df <- data.frame(
+      W = as.numeric(sw$statistic),
+      "p-value" = sw$p.value
+    )
+  }
+
   rownames(df) <- ""
   stats::printCoefmat(df, P.values=TRUE, has.Pvalue = TRUE, na.print = "-")
   cat("------", "\n")

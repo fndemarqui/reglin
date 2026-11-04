@@ -4,7 +4,7 @@
 # internal function used to compute press statistic (single model)
 PRESS <- function(object){
   r <- residuals(object)
-  h <- hatvalues(object)
+  h <- stats::hatvalues(object)
   press <-  (r/(1-h))^2
   return(sum(press))
 }
