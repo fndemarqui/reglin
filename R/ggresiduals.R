@@ -77,7 +77,7 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha,
 
   if(isGLM){
     set.seed(123)
-    limits <- envelop(fit, ...)
+    limits <- envelop(object, ...)
     p2 <- ggplot(limits, aes(x = theoretical)) +
       geom_ribbon(
         aes(ymin = lower, ymax = upper),
