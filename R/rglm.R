@@ -6,10 +6,11 @@
 #' @param family a character string or a family object specifying the distribution of the response variable.
 #' @param phi dispersion parameter.
 #' @param data a data.frame containing the set of covariates entering the linear predictor.
+#' @param offset optional numeric vector with an a priori known offset added to the linear predictor. If `NULL`, any `offset()` term in `formula` is used.
 #' @param ... further arguments passed to other methods.
 #' @return a numeric vector containing the generated response variable.
 #'
-rglm <- function (formula, beta, family, phi = NULL, data = NULL, ...){
+rglm <- function (formula, beta, family, phi = NULL, data = NULL, offset = NULL, ...){
   call <- match.call()
   if(is.character(family)){
     family <- get(family, mode = "function", envir = parent.frame())
@@ -29,6 +30,8 @@ rglm <- function (formula, beta, family, phi = NULL, data = NULL, ...){
   }
 
   eta <- as.numeric(X %*% beta)
+  if (is.null(offset)) offset <- stats::model.offset(mf)
+  if (!is.null(offset)) eta <- eta + offset
   mu <- family$linkinv(eta)
   y =  switch(
     family$family,

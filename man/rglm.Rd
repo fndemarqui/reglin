@@ -4,7 +4,7 @@
 \alias{rglm}
 \title{rglm: data generation for generalized linear models}
 \usage{
-rglm(formula, beta, family, phi = NULL, data = NULL, ...)
+rglm(formula, beta, family, phi = NULL, data = NULL, offset = NULL, ...)
 }
 \arguments{
 \item{formula}{a formula containing the linear predictor.}
@@ -16,6 +16,8 @@ rglm(formula, beta, family, phi = NULL, data = NULL, ...)
 \item{phi}{dispersion parameter.}
 
 \item{data}{a data.frame containing the set of covariates entering the linear predictor.}
+
+\item{offset}{optional numeric vector with an a priori known offset added to the linear predictor. If \code{NULL}, any \code{offset()} term in \code{formula} is used.}
 
 \item{...}{further arguments passed to other methods.}
 }

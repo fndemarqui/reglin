@@ -88,15 +88,14 @@ defaultPlots <- function(object, which = 1:4, alpha = alpha,
         data = data.frame(
           x = min(limits$theoretical),
           xend = max(limits$theoretical),
-          y = min(c(limits$sample, limits$theoretical)),
-          yend = max(c(limits$sample, limits$theoretical))
+          y = min(limits$theoretical),
+          yend = max(limits$theoretical)
         ),
         aes(x = x, y = y, xend = xend, yend = yend),
         color = "blue"
       ) +
       geom_point(aes(y = sample)) +
       ylab("sample")
-
 
       df$.pred <- stats::predict(object, type = "response")
       df$.obs <- if(is.null(object$y)){
