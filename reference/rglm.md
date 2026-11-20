@@ -5,7 +5,7 @@ rglm: data generation for generalized linear models
 ## Usage
 
 ``` r
-rglm(formula, beta, family, phi = NULL, data = NULL, ...)
+rglm(formula, beta, family, phi = NULL, data = NULL, offset = NULL, ...)
 ```
 
 ## Arguments
@@ -31,6 +31,13 @@ rglm(formula, beta, family, phi = NULL, data = NULL, ...)
 
   a data.frame containing the set of covariates entering the linear
   predictor.
+
+- offset:
+
+  optional numeric vector with an a priori known offset added to the
+  linear predictor. If `NULL`, any
+  [`offset()`](https://rdrr.io/r/stats/offset.html) term in `formula` is
+  used.
 
 - ...:
 
