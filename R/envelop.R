@@ -54,7 +54,14 @@ dispersion <- function(object){
 
 glm_boot <- function(object) {
   beta <- stats::coef(object)
-  phi <- dispersion(object)
+
+  is_nb <- inherits(object, "negbin")
+  phi <- if(is_nb){
+    NULL
+  } else{
+    dispersion(object)
+  }
+
   mf <- stats::model.frame(object)
   off <- stats::model.offset(mf) # extrai o vetor de offset já avaliado (ex.: log(service))
   resp_vars <- all.vars(stats::formula(object)[[2]])
@@ -90,23 +97,39 @@ glm_boot <- function(object) {
     X$.off_boot <- off
   }
 
-  new <- rglm(form, beta = beta, phi = phi, family = object$family, data = X,
-              offset = off, size = m)
+  # new <- rglm(form, beta = beta, phi = phi, family = object$family, data = X,
+  #             offset = off, size = m)
+
+  if (is_nb){
+    new <- stats::rnbinom(
+      n = nrow(mf),
+      size = object$theta,
+      mu = stats::fitted(object)
+    )
+  } else {
+    new <- rglm(form, beta = beta, phi = phi, family = object$family, data = X,
+                offset = off, size = m)
+  }
+
   y[, 1] <- new
   # cbind(successes, failures): second column must be m - successes
   if (ncol(y) > 1) y[, 2] <- m - new
   newdata <- dplyr::bind_cols(y, X)
 
   if (has_off) {
-    # offset is supplied via `offset=` so it also replaces any `offset=` argument in the original call
+    # offset goes in the formula (found in `data` by any fitting function, e.g. glm.nb);
+    # offset = NULL drops any `offset=` argument from the original call
     fit_form <- stats::reformulate(
-      attr(Terms, "term.labels"),
+      c(attr(Terms, "term.labels"), "offset(.off_boot)"),
       response = stats::formula(object)[[2]],
       intercept = attr(Terms, "intercept") == 1
     )
-    fit <- update(object, formula = fit_form, offset = .off_boot, data = newdata)
+    # drop any `offset=` argument from the original call (only when present)
+    new_call <- stats::update(object, formula = fit_form, data = newdata, evaluate = FALSE)
+    new_call$offset <- NULL
+    fit <- eval(new_call)
   } else {
-    fit <- update(object, data = newdata)
+    fit <- stats::update(object, data = newdata)
   }
 
   r <- sort(qresiduals(fit))
@@ -124,7 +147,7 @@ envelop <- function(object, B = 1000, conf.level = 0.95, type.residuals = c("qua
     #set.seed(b)
     r[b, ] <- glm_boot(object)
   }
-  limits <- t(apply(r, 2, function(x) quantile(x, probs = c(alpha/2, 1 - alpha/2))))
+  limits <- t(apply(r, 2, function(x) stats::quantile(x, probs = c(alpha/2, 1 - alpha/2))))
   colnames(limits) <- c("lower", "upper")
   r <- switch(type.residuals,
               deviance = rstandard(object, type = "deviance"),
